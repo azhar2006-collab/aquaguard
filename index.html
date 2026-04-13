@@ -3,1185 +3,611 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>First Set — Gym in Saligramam, Chennai</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<title>Aquaguard — Pure Living. Pure Life.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0A0A0A;
-  --bg-elevated: #111111;
-  --surface: #1A1A1A;
-  --accent: #C8FF00;
-  --accent-dim: #9ABF00;
-  --text: #F5F5F0;
-  --text-muted: #888880;
-  --text-dim: #555550;
-  --border: #2A2A2A;
-  --radius: 16px;
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-mono: 'Space Mono', monospace;
-  --font-body: 'DM Sans', sans-serif;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font-body);
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* === NOISE OVERLAY === */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
-}
-
-/* === UTILITY === */
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 clamp(20px, 5vw, 60px);
-}
-a { color: inherit; text-decoration: none; }
-
-/* === CURSOR GLOW (desktop only) === */
-.cursor-glow {
-  position: fixed;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(200,255,0,0.06) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: left 0.3s ease-out, top 0.3s ease-out;
-}
-
-/* === NAV === */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  padding: 20px 0;
-  background: rgba(10,10,10,0.8);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-nav .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.logo {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 36px);
-  letter-spacing: 3px;
-  color: var(--text);
-  line-height: 1;
-}
-.logo span { color: var(--accent); }
-.nav-links {
-  display: flex;
-  gap: 32px;
-  list-style: none;
-  align-items: center;
-}
-.nav-links a {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  transition: color 0.3s;
-}
-.nav-links a:hover { color: var(--accent); }
-.nav-cta {
-  background: var(--accent) !important;
-  color: var(--bg) !important;
-  padding: 10px 24px;
-  border-radius: 100px;
-  font-weight: 700 !important;
-  font-size: 11px !important;
-  transition: transform 0.3s, box-shadow 0.3s !important;
-}
-.nav-cta:hover {
-  transform: scale(1.05) !important;
-  box-shadow: 0 0 30px rgba(200,255,0,0.3) !important;
-}
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-}
-.menu-toggle span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--text);
-  margin: 5px 0;
-  transition: 0.3s;
-}
-
-/* === HERO === */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  padding-top: 80px;
-}
-.hero-bg-pattern {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(200,255,0,0.04) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(200,255,0,0.02) 0%, transparent 60%);
-}
-.hero-grid-lines {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(200,255,0,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200,255,0,0.03) 1px, transparent 1px);
-  background-size: 80px 80px;
-  mask-image: radial-gradient(ellipse 70% 70% at center, black, transparent);
-}
-.hero .container {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-.hero-content { max-width: 600px; }
-.hero-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 24px;
-  animation: fadeSlideUp 0.8s ease-out both;
-}
-.hero-tag::before {
-  content: '';
-  width: 32px;
-  height: 2px;
-  background: var(--accent);
-}
-.hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(60px, 10vw, 120px);
-  line-height: 0.9;
-  letter-spacing: 4px;
-  margin-bottom: 28px;
-  animation: fadeSlideUp 0.8s ease-out 0.15s both;
-}
-.hero h1 .line-accent { color: var(--accent); display: block; }
-.hero-desc {
-  font-size: 17px;
-  line-height: 1.7;
-  color: var(--text-muted);
-  margin-bottom: 40px;
-  max-width: 420px;
-  animation: fadeSlideUp 0.8s ease-out 0.3s both;
-}
-.hero-actions {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  animation: fadeSlideUp 0.8s ease-out 0.45s both;
-}
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--accent);
-  color: var(--bg);
-  padding: 16px 36px;
-  border-radius: 100px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 40px rgba(200,255,0,0.25);
-}
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: transparent;
-  color: var(--text);
-  padding: 16px 36px;
-  border-radius: 100px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  border: 1px solid var(--border);
-  cursor: pointer;
-  transition: border-color 0.3s, color 0.3s;
-}
-.btn-secondary:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-/* Hero right side — stats card */
-.hero-visual {
-  display: flex;
-  justify-content: center;
-  animation: fadeSlideUp 0.8s ease-out 0.5s both;
-}
-.stats-card {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 40px;
-  width: 100%;
-  max-width: 420px;
-  position: relative;
-  overflow: hidden;
-}
-.stats-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), transparent);
-}
-.stats-card-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 32px;
-}
-.stats-card-badge {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: rgba(200,255,0,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-}
-.stats-card-title {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--text-muted);
-}
-.stats-card-rating {
-  font-family: var(--font-display);
-  font-size: 42px;
-  color: var(--accent);
-  line-height: 1;
-}
-.stars { display: flex; gap: 4px; margin: 12px 0 8px; }
-.stars svg { width: 20px; height: 20px; fill: var(--accent); }
-.reviews-count {
-  font-size: 13px;
-  color: var(--text-dim);
-  margin-bottom: 28px;
-}
-.stat-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 16px 0;
-  border-top: 1px solid var(--border);
-}
-.stat-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text-dim);
-}
-.stat-value {
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--text);
-}
-.stat-value.accent { color: var(--accent); }
-
-/* === MARQUEE === */
-.marquee-section {
-  padding: 24px 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  overflow: hidden;
-  background: var(--bg-elevated);
-}
-.marquee-track {
-  display: flex;
-  gap: 60px;
-  animation: marquee 30s linear infinite;
-  width: max-content;
-}
-.marquee-item {
-  font-family: var(--font-display);
-  font-size: 20px;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: var(--text-dim);
-  display: flex;
-  align-items: center;
-  gap: 60px;
-}
-.marquee-item::after {
-  content: '◆';
-  color: var(--accent);
-  font-size: 10px;
-}
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-/* === SECTIONS === */
-section { padding: clamp(60px, 10vw, 120px) 0; }
-.section-tag {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-.section-tag::before {
-  content: '';
-  width: 24px;
-  height: 2px;
-  background: var(--accent);
-}
-.section-title {
-  font-family: var(--font-display);
-  font-size: clamp(36px, 6vw, 64px);
-  letter-spacing: 3px;
-  line-height: 1;
-  margin-bottom: 20px;
-}
-.section-desc {
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--text-muted);
-  max-width: 520px;
-  margin-bottom: 48px;
-}
-
-/* === FEATURES === */
-#features { background: var(--bg); }
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-.feature-card {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 36px;
-  transition: border-color 0.4s, transform 0.4s;
-  position: relative;
-  overflow: hidden;
-}
-.feature-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-4px);
-}
-.feature-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 0;
-  background: linear-gradient(180deg, rgba(200,255,0,0.04), transparent);
-  transition: height 0.4s;
-}
-.feature-card:hover::after { height: 100%; }
-.feature-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  background: rgba(200,255,0,0.08);
-  border: 1px solid rgba(200,255,0,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  margin-bottom: 24px;
-  position: relative;
-  z-index: 1;
-}
-.feature-card h3 {
-  font-family: var(--font-display);
-  font-size: 24px;
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-  position: relative;
-  z-index: 1;
-}
-.feature-card p {
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--text-muted);
-  position: relative;
-  z-index: 1;
-}
-
-/* === SCHEDULE === */
-#schedule { background: var(--bg-elevated); }
-.schedule-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-}
-.schedule-slot {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px;
-  text-align: center;
-  transition: border-color 0.3s, transform 0.3s;
-}
-.schedule-slot:hover {
-  border-color: var(--accent);
-  transform: scale(1.03);
-}
-.slot-time {
-  font-family: var(--font-display);
-  font-size: 28px;
-  letter-spacing: 2px;
-  color: var(--accent);
-  margin-bottom: 6px;
-}
-.slot-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--text-dim);
-  margin-bottom: 14px;
-}
-.slot-desc {
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-/* === TESTIMONIALS === */
-#testimonials { background: var(--bg); }
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-.testimonial-card {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 36px;
-  position: relative;
-}
-.testimonial-card::before {
-  content: '"';
-  font-family: var(--font-display);
-  font-size: 80px;
-  color: rgba(200,255,0,0.1);
-  position: absolute;
-  top: 16px;
-  right: 28px;
-  line-height: 1;
-}
-.testimonial-text {
-  font-size: 15px;
-  line-height: 1.8;
-  color: var(--text-muted);
-  margin-bottom: 24px;
-  font-style: italic;
-  position: relative;
-  z-index: 1;
-}
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.author-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent-dim));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: var(--bg);
-  font-size: 14px;
-}
-.author-name {
-  font-weight: 600;
-  font-size: 14px;
-}
-.author-tag {
-  font-size: 12px;
-  color: var(--text-dim);
-}
-
-/* === PRICING === */
-#pricing { background: var(--bg-elevated); }
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-.pricing-card {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 40px;
-  text-align: center;
-  transition: transform 0.4s, border-color 0.4s;
-  position: relative;
-}
-.pricing-card.featured {
-  border-color: var(--accent);
-}
-.pricing-card.featured::before {
-  content: 'MOST POPULAR';
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--accent);
-  color: var(--bg);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  padding: 4px 20px;
-  border-radius: 100px;
-}
-.pricing-card:hover { transform: translateY(-6px); }
-.pricing-duration {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 16px;
-}
-.pricing-amount {
-  font-family: var(--font-display);
-  font-size: 52px;
-  color: var(--text);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.pricing-card.featured .pricing-amount { color: var(--accent); }
-.pricing-period {
-  font-size: 13px;
-  color: var(--text-dim);
-  margin-bottom: 28px;
-}
-.pricing-features {
-  list-style: none;
-  text-align: left;
-  margin-bottom: 32px;
-}
-.pricing-features li {
-  padding: 10px 0;
-  font-size: 14px;
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.pricing-features li::before {
-  content: '✓';
-  color: var(--accent);
-  font-weight: 700;
-  font-size: 13px;
-}
-.pricing-btn {
-  width: 100%;
-  padding: 14px;
-  border-radius: 100px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text);
-}
-.pricing-card.featured .pricing-btn {
-  background: var(--accent);
-  color: var(--bg);
-  border-color: var(--accent);
-}
-.pricing-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-.pricing-card.featured .pricing-btn:hover {
-  box-shadow: 0 0 30px rgba(200,255,0,0.3);
-}
-
-/* === LOCATION === */
-#location { background: var(--bg); }
-.location-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-.map-wrapper {
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--border);
-  aspect-ratio: 4/3;
-}
-.map-wrapper iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  filter: grayscale(1) invert(1) contrast(1.1) hue-rotate(180deg);
-}
-.location-info {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-.info-item {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px;
-  display: flex;
-  gap: 16px;
-  transition: border-color 0.3s;
-}
-.info-item:hover { border-color: var(--accent); }
-.info-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(200,255,0,0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  flex-shrink: 0;
-}
-.info-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--text-dim);
-  margin-bottom: 6px;
-}
-.info-value {
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--text);
-}
-
-/* === CTA BANNER === */
-.cta-banner {
-  background: linear-gradient(135deg, rgba(200,255,0,0.08) 0%, var(--bg-elevated) 100%);
-  border: 1px solid rgba(200,255,0,0.15);
-  border-radius: var(--radius);
-  padding: clamp(40px, 6vw, 80px);
-  text-align: center;
-  margin: 0 clamp(20px, 5vw, 60px);
-  position: relative;
-  overflow: hidden;
-}
-.cta-banner::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 30% 30%, rgba(200,255,0,0.04), transparent 50%);
-}
-.cta-banner h2 {
-  font-family: var(--font-display);
-  font-size: clamp(40px, 6vw, 72px);
-  letter-spacing: 4px;
-  line-height: 1;
-  margin-bottom: 16px;
-  position: relative;
-}
-.cta-banner p {
-  font-size: 16px;
-  color: var(--text-muted);
-  margin-bottom: 36px;
-  position: relative;
-}
-.cta-banner .btn-primary { position: relative; }
-
-/* === FOOTER === */
-footer {
-  padding: 60px 0 40px;
-  border-top: 1px solid var(--border);
-  background: var(--bg);
-}
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 40px;
-  margin-bottom: 48px;
-}
-.footer-brand .logo { margin-bottom: 16px; }
-.footer-brand p {
-  font-size: 14px;
-  color: var(--text-dim);
-  line-height: 1.7;
-  max-width: 300px;
-}
-.footer-col h4 {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 20px;
-}
-.footer-col ul { list-style: none; }
-.footer-col li { margin-bottom: 12px; }
-.footer-col a {
-  font-size: 14px;
-  color: var(--text-muted);
-  transition: color 0.3s;
-}
-.footer-col a:hover { color: var(--accent); }
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 32px;
-  border-top: 1px solid var(--border);
-}
-.footer-bottom p {
-  font-size: 12px;
-  color: var(--text-dim);
-}
-.social-links {
-  display: flex;
-  gap: 12px;
-}
-.social-link {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  transition: border-color 0.3s, background 0.3s;
-}
-.social-link:hover {
-  border-color: var(--accent);
-  background: rgba(200,255,0,0.08);
-}
-
-/* === ANIMATIONS === */
-@keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 900px) {
-  .hero .container { grid-template-columns: 1fr; gap: 40px; }
-  .hero-visual { justify-content: flex-start; }
-  .stats-card { max-width: 100%; }
-  .location-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .nav-links { display: none; }
-  .menu-toggle { display: block; }
-  nav.open .nav-links {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--bg-elevated);
-    padding: 24px;
-    border-bottom: 1px solid var(--border);
-    gap: 20px;
+  :root {
+    --blue-deep: #0a1628;
+    --blue-mid: #0d2d5e;
+    --blue-bright: #1565c0;
+    --cyan: #00b4d8;
+    --cyan-light: #48cae4;
+    --gold: #f0a500;
+    --white: #f8faff;
+    --text-muted: #8fa8c8;
+    --card-bg: rgba(13,45,94,0.55);
   }
-}
-@media (max-width: 600px) {
-  .footer-grid { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
-}
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--blue-deep);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(10,22,40,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0,180,216,0.15);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem; font-weight: 900;
+    color: var(--cyan);
+    letter-spacing: 1px;
+  }
+  .logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--text-muted); text-decoration: none;
+    font-size: 0.88rem; font-weight: 500; letter-spacing: 0.5px;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--cyan), var(--blue-bright));
+    color: #fff; padding: 10px 26px; border-radius: 50px;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;
+    text-decoration: none; transition: opacity 0.3s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 120px 60px 80px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(21,101,192,0.25) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 80% at 20% 80%, rgba(0,180,216,0.12) 0%, transparent 60%),
+      linear-gradient(160deg, #0a1628 0%, #0d2d5e 50%, #0a1628 100%);
+  }
+  .hero-waves {
+    position: absolute; bottom: -2px; left: 0; right: 0;
+  }
+  /* Animated circles */
+  .bubble {
+    position: absolute; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,216,0.12), transparent 70%);
+    animation: float linear infinite;
+  }
+  @keyframes float {
+    0% { transform: translateY(0) scale(1); opacity: 0.6; }
+    50% { transform: translateY(-40px) scale(1.05); opacity: 1; }
+    100% { transform: translateY(0) scale(1); opacity: 0.6; }
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 620px; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(0,180,216,0.12);
+    border: 1px solid rgba(0,180,216,0.3);
+    color: var(--cyan-light);
+    padding: 6px 18px; border-radius: 50px;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 24px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 900; line-height: 1.05;
+    margin-bottom: 28px;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+  .hero h1 em { font-style: normal; color: var(--cyan); }
+  .hero p {
+    font-size: 1.1rem; color: var(--text-muted); line-height: 1.7;
+    max-width: 480px; margin-bottom: 40px;
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 0.9s 0.3s ease both; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--cyan), var(--blue-bright));
+    color: #fff; padding: 16px 36px; border-radius: 50px;
+    font-weight: 600; font-size: 0.95rem; text-decoration: none;
+    box-shadow: 0 8px 32px rgba(0,180,216,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,180,216,0.45); }
+  .btn-ghost {
+    border: 1px solid rgba(0,180,216,0.4); color: var(--cyan);
+    padding: 16px 36px; border-radius: 50px;
+    font-weight: 600; font-size: 0.95rem; text-decoration: none;
+    transition: background 0.3s;
+  }
+  .btn-ghost:hover { background: rgba(0,180,216,0.1); }
+  .hero-stats {
+    position: absolute; right: 60px; top: 50%;
+    transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 24px;
+    z-index: 1; animation: fadeLeft 1s 0.4s ease both;
+  }
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(0,180,216,0.2);
+    backdrop-filter: blur(12px);
+    padding: 20px 28px; border-radius: 16px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900; color: var(--cyan);
+  }
+  .stat-label { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.5px; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translate(30px, -50%); }
+    to { opacity: 1; transform: translate(0, -50%); }
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 100px 60px; }
+  .section-label {
+    color: var(--cyan); font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900;
+    line-height: 1.15; margin-bottom: 16px;
+  }
+  .section-sub { color: var(--text-muted); font-size: 1.05rem; max-width: 560px; line-height: 1.7; }
+
+  /* ── PRODUCTS ── */
+  .products { background: linear-gradient(180deg, var(--blue-deep) 0%, #061120 100%); }
+  .products-header { text-align: center; margin-bottom: 70px; }
+  .products-header .section-sub { margin: 0 auto; }
+
+  .product-category { margin-bottom: 80px; }
+  .cat-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--cyan); margin-bottom: 32px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .cat-title::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(to right, rgba(0,180,216,0.3), transparent);
+  }
+  .cat-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(0,180,216,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  .cards-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  .product-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(0,180,216,0.15);
+    border-radius: 20px; padding: 32px;
+    backdrop-filter: blur(12px);
+    transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+    position: relative; overflow: hidden;
+  }
+  .product-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--cyan), var(--blue-bright));
+    opacity: 0; transition: opacity 0.35s;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0,180,216,0.4);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(0,180,216,0.08);
+  }
+  .product-card:hover::before { opacity: 1; }
+
+  .card-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+  .card-icon {
+    width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+    background: linear-gradient(135deg, rgba(0,180,216,0.2), rgba(21,101,192,0.2));
+    border: 1px solid rgba(0,180,216,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+  }
+  .card-name { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; }
+  .card-model { font-size: 0.78rem; color: var(--cyan); margin-top: 3px; letter-spacing: 0.5px; }
+  .card-badge {
+    position: absolute; top: 20px; right: 20px;
+    background: rgba(240,165,0,0.15); border: 1px solid rgba(240,165,0,0.3);
+    color: var(--gold); padding: 4px 12px; border-radius: 50px;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
+  }
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .feature-list li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 0.88rem; color: #c0d4ec; line-height: 1.5;
+  }
+  .feature-list li::before {
+    content: '◆'; color: var(--cyan); font-size: 0.5rem;
+    margin-top: 5px; flex-shrink: 0;
+  }
+
+  /* ── WHY SECTION ── */
+  .why-section {
+    background: linear-gradient(135deg, #061120 0%, var(--blue-mid) 50%, #061120 100%);
+    position: relative; overflow: hidden;
+  }
+  .why-section::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,216,0.06) 0%, transparent 70%);
+  }
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .why-pillars { display: flex; flex-direction: column; gap: 20px; }
+  .pillar {
+    background: rgba(13,45,94,0.5);
+    border: 1px solid rgba(0,180,216,0.15);
+    border-radius: 16px; padding: 24px;
+    display: flex; gap: 20px; align-items: flex-start;
+    transition: border-color 0.3s;
+  }
+  .pillar:hover { border-color: rgba(0,180,216,0.4); }
+  .pillar-icon {
+    width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+    background: linear-gradient(135deg, rgba(0,180,216,0.2), rgba(21,101,192,0.2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+  .pillar h3 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+  .pillar p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── CTA ── */
+  .cta-section {
+    text-align: center;
+    background: linear-gradient(180deg, #061120 0%, var(--blue-deep) 100%);
+    padding: 100px 60px;
+  }
+  .cta-card {
+    max-width: 720px; margin: 0 auto;
+    background: linear-gradient(135deg, rgba(13,45,94,0.8), rgba(10,22,40,0.8));
+    border: 1px solid rgba(0,180,216,0.25);
+    border-radius: 28px; padding: 64px 48px;
+    backdrop-filter: blur(16px);
+    position: relative; overflow: hidden;
+  }
+  .cta-card::before {
+    content: '';
+    position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+    width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,216,0.08), transparent 70%);
+  }
+  .cta-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 900; margin-bottom: 16px;
+    position: relative;
+  }
+  .cta-card p {
+    color: var(--text-muted); font-size: 1rem; margin-bottom: 36px;
+    position: relative;
+  }
+  .cta-form { display: flex; gap: 12px; max-width: 440px; margin: 0 auto; position: relative; }
+  .cta-form input {
+    flex: 1; background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(0,180,216,0.2); border-radius: 50px;
+    padding: 14px 22px; color: var(--white); font-size: 0.9rem;
+    outline: none; font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.3s;
+  }
+  .cta-form input:focus { border-color: var(--cyan); }
+  .cta-form input::placeholder { color: var(--text-muted); }
+  .cta-form button {
+    background: linear-gradient(135deg, var(--cyan), var(--blue-bright));
+    color: #fff; border: none; padding: 14px 28px; border-radius: 50px;
+    font-weight: 600; font-size: 0.9rem; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; white-space: nowrap;
+    transition: opacity 0.3s;
+  }
+  .cta-form button:hover { opacity: 0.85; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #04090f;
+    border-top: 1px solid rgba(0,180,216,0.1);
+    padding: 60px; text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; color: var(--cyan);
+    margin-bottom: 12px;
+  }
+  .footer-logo span { color: var(--gold); }
+  footer p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 24px; }
+  .footer-links { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .footer-links a { color: var(--text-muted); font-size: 0.83rem; text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--cyan); }
+  .footer-bottom {
+    margin-top: 40px; padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    color: rgba(143,168,200,0.5); font-size: 0.78rem;
+  }
+
+  /* Wave SVG divider */
+  .wave-divider { line-height: 0; }
+  .wave-divider svg { display: block; }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 70px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-stats { display: none; }
+    .why-grid { grid-template-columns: 1fr; gap: 40px; }
+    .cta-form { flex-direction: column; }
+    footer { padding: 40px 24px; }
+  }
 </style>
 </head>
 <body>
 
-<div class="cursor-glow" id="cursorGlow"></div>
-
 <!-- NAV -->
-<nav id="navbar">
-  <div class="container">
-    <div class="logo">FIRST <span>SET</span></div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#features">What We Offer</a></li>
-      <li><a href="#schedule">Schedule</a></li>
-      <li><a href="#pricing">Plans</a></li>
-      <li><a href="#testimonials">Reviews</a></li>
-      <li><a href="#location">Find Us</a></li>
-      <li><a href="tel:09176198666" class="nav-cta">Call Now</a></li>
-    </ul>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+<nav>
+  <div class="logo">Aqua<span>guard</span></div>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get Free Demo</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg-pattern"></div>
-  <div class="hero-grid-lines"></div>
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-tag">Saligramam, Chennai</div>
-      <h1>YOUR<br>FIRST<br><span class="line-accent">SET</span></h1>
-      <p class="hero-desc">Where every rep counts. A no-nonsense gym built for real results — friendly staff, quality equipment, and prices that respect your wallet.</p>
-      <div class="hero-actions">
-        <a href="tel:09176198666" class="btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          Call Now
-        </a>
-        <a href="#location" class="btn-secondary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Directions
-        </a>
-      </div>
+  <div class="hero-bg"></div>
+  <!-- Decorative bubbles -->
+  <div class="bubble" style="width:320px;height:320px;left:55%;top:10%;animation-duration:8s;"></div>
+  <div class="bubble" style="width:180px;height:180px;left:75%;top:55%;animation-duration:6s;animation-delay:1s;"></div>
+  <div class="bubble" style="width:100px;height:100px;left:40%;top:70%;animation-duration:7s;animation-delay:2s;"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">🌊 Trusted Since 1984</div>
+    <h1>Pure Living.<br><em>Pure Life.</em></h1>
+    <p>India's most trusted brand for water purification, air purification, and smart home cleaning solutions. Technology you can trust, water you can feel.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">Explore Products</a>
+      <a href="#contact" class="btn-ghost">Book a Demo</a>
     </div>
-    <div class="hero-visual">
-      <div class="stats-card">
-        <div class="stats-card-header">
-          <div class="stats-card-badge">⭐</div>
-          <div>
-            <div class="stats-card-title">Google Rating</div>
-          </div>
-        </div>
-        <div class="stats-card-rating">4.9</div>
-        <div class="stars">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <div class="reviews-count">Based on 287 Google Reviews</div>
-        <div class="stat-row">
-          <span class="stat-label">Status</span>
-          <span class="stat-value accent">● Open Now</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-label">Closes At</span>
-          <span class="stat-value">9:00 PM</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-label">Vibe</span>
-          <span class="stat-value">Friendly & Focused</span>
-        </div>
-      </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-num">25M+</div>
+      <div class="stat-label">Happy Homes</div>
     </div>
+    <div class="stat-card">
+      <div class="stat-num">99.9%</div>
+      <div class="stat-label">Purification Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">40+</div>
+      <div class="stat-label">Years of Trust</div>
+    </div>
+  </div>
+
+  <div class="hero-waves">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#061120"/>
+    </svg>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-section">
-  <div class="marquee-track">
-    <span class="marquee-item">Strength Training</span>
-    <span class="marquee-item">Cardio Zone</span>
-    <span class="marquee-item">Personal Training</span>
-    <span class="marquee-item">Weight Training</span>
-    <span class="marquee-item">Functional Fitness</span>
-    <span class="marquee-item">CrossFit</span>
-    <span class="marquee-item">Friendly Staff</span>
-    <span class="marquee-item">Affordable Plans</span>
-    <span class="marquee-item">Strength Training</span>
-    <span class="marquee-item">Cardio Zone</span>
-    <span class="marquee-item">Personal Training</span>
-    <span class="marquee-item">Weight Training</span>
-    <span class="marquee-item">Functional Fitness</span>
-    <span class="marquee-item">CrossFit</span>
-    <span class="marquee-item">Friendly Staff</span>
-    <span class="marquee-item">Affordable Plans</span>
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="products-header">
+    <div class="section-label">Our Range</div>
+    <h2 class="section-title">Complete Home Solutions</h2>
+    <p class="section-sub">From pure drinking water to fresh air and spotless floors — every product engineered for Indian homes.</p>
   </div>
-</div>
 
-<!-- FEATURES -->
-<section id="features">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-tag">What We Offer</div>
-      <h2 class="section-title">BUILT FOR<br>RESULTS</h2>
-      <p class="section-desc">Everything you need, nothing you don't. First Set is designed for people who show up and put in the work.</p>
-    </div>
-    <div class="features-grid reveal">
-      <div class="feature-card">
-        <div class="feature-icon">🏋️</div>
-        <h3>FREE WEIGHTS</h3>
-        <p>Full rack of dumbbells, barbells, and plates. From beginners to advanced lifters — we've got the iron you need.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">💪</div>
-        <h3>MACHINES</h3>
-        <p>Well-maintained strength machines targeting every muscle group. Clean, oiled, and ready for your sets.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🫀</div>
-        <h3>CARDIO ZONE</h3>
-        <p>Treadmills, cross-trainers, and cycles. Get your heart rate up and burn through those calories.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎯</div>
-        <h3>PERSONAL TRAINING</h3>
-        <p>Expert trainers who actually care about your form and progress. Customized plans, real accountability.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🧘</div>
-        <h3>FUNCTIONAL AREA</h3>
-        <p>Dedicated space for stretching, mobility work, and functional training. Move better, feel better.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🚿</div>
-        <h3>CLEAN FACILITIES</h3>
-        <p>Spotless locker rooms, proper ventilation, and sanitized equipment. Because hygiene isn't optional.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- Water Purifiers -->
+  <div class="product-category">
+    <div class="cat-title"><div class="cat-icon">💧</div>Water Purifiers</div>
+    <div class="cards-grid">
 
-<!-- SCHEDULE -->
-<section id="schedule">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-tag">Timings</div>
-      <h2 class="section-title">YOUR DAY,<br>YOUR SESSION</h2>
-      <p class="section-desc">We're open when you need us. Pick the slot that fits your life.</p>
-    </div>
-    <div class="schedule-grid reveal">
-      <div class="schedule-slot">
-        <div class="slot-time">5:00 AM</div>
-        <div class="slot-label">Early Bird</div>
-        <p class="slot-desc">Beat the crowd. Own the gym before the city wakes up.</p>
-      </div>
-      <div class="schedule-slot">
-        <div class="slot-time">7:00 AM</div>
-        <div class="slot-label">Morning Rush</div>
-        <p class="slot-desc">High energy, full house. Fuel your day right.</p>
-      </div>
-      <div class="schedule-slot">
-        <div class="slot-time">12:00 PM</div>
-        <div class="slot-label">Lunch Break</div>
-        <p class="slot-desc">Quick session between meetings. Maximum efficiency.</p>
-      </div>
-      <div class="schedule-slot">
-        <div class="slot-time">5:00 PM</div>
-        <div class="slot-label">After Work</div>
-        <p class="slot-desc">Decompress with heavy lifts. Shake off the day.</p>
-      </div>
-      <div class="schedule-slot">
-        <div class="slot-time">9:00 PM</div>
-        <div class="slot-label">Last Call</div>
-        <p class="slot-desc">Closing time. We shut sharp — finish strong.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-tag">What People Say</div>
-      <h2 class="section-title">287 REVIEWS.<br>4.9 STARS.</h2>
-      <p class="section-desc">Real feedback from real people who train here every day.</p>
-    </div>
-    <div class="testimonials-grid reveal">
-      <div class="testimonial-card">
-        <p class="testimonial-text">Right place to workout, prices are reasonable, friendly staff. The trainers genuinely push you to do better without being aggressive.</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">R</div>
+      <div class="product-card">
+        <div class="card-badge">BESTSELLER</div>
+        <div class="card-header">
+          <div class="card-icon">🔥</div>
           <div>
-            <div class="author-name">Google Reviewer</div>
-            <div class="author-tag">⭐⭐⭐⭐⭐ Verified</div>
+            <div class="card-name">Classic Hot UV</div>
+            <div class="card-model">e-Boiling Technology</div>
           </div>
         </div>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-text">Been training here for 6 months. The environment is clean, equipment is solid, and the monthly fees don't burn a hole in your pocket.</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">S</div>
-          <div>
-            <div class="author-name">Member</div>
-            <div class="author-tag">⭐⭐⭐⭐⭐ Regular</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-text">Best gym in Saligramam hands down. Great vibe, no ego lifting, and the staff remembers your name. That matters.</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">A</div>
-          <div>
-            <div class="author-name">Member</div>
-            <div class="author-tag">⭐⭐⭐⭐⭐ Regular</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-tag">Membership</div>
-      <h2 class="section-title">HONEST<br>PRICING</h2>
-      <p class="section-desc">No hidden fees. No lock-in contracts. Just straightforward plans that work for you.</p>
-    </div>
-    <div class="pricing-grid reveal">
-      <div class="pricing-card">
-        <div class="pricing-duration">Monthly</div>
-        <div class="pricing-amount">₹1,500</div>
-        <div class="pricing-period">per month</div>
-        <ul class="pricing-features">
-          <li>Full gym access</li>
-          <li>All equipment zones</li>
-          <li>Locker & changing room</li>
-          <li>Flexible timing</li>
+        <ul class="feature-list">
+          <li>Patented Active Copper Maxx with Zinc Booster Technology</li>
+          <li>Intelligent Purity Sensor (IPS) — continuously scans water for 100% health</li>
+          <li>Temperature control: Hot, Warm & Ambient</li>
+          <li>Advanced UV e-boiling for deep purification</li>
         </ul>
-        <button class="pricing-btn" onclick="window.location.href='tel:09176198666'">Get Started</button>
       </div>
-      <div class="pricing-card featured">
-        <div class="pricing-duration">Quarterly</div>
-        <div class="pricing-amount">₹4,000</div>
-        <div class="pricing-period">3 months</div>
-        <ul class="pricing-features">
-          <li>Everything in Monthly</li>
-          <li>Free fitness assessment</li>
-          <li>Diet guidance</li>
-          <li>Save ₹500</li>
+
+      <div class="product-card">
+        <div class="card-badge">NEW</div>
+        <div class="card-header">
+          <div class="card-icon">💎</div>
+          <div>
+            <div class="card-name">Eden</div>
+            <div class="card-model">RO + UV + MTDS + SS</div>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li>RO + UV + MTDS + SS multi-stage purification system</li>
+          <li>Patented Active Copper Maxx with Zinc Booster Technology</li>
+          <li>304 Grade Stainless Steel Storage Tank — hygienic & durable</li>
+          <li>7.5 Litre tank capacity with Intuitive LED Display</li>
         </ul>
-        <button class="pricing-btn" onclick="window.location.href='tel:09176198666'">Get Started</button>
       </div>
-      <div class="pricing-card">
-        <div class="pricing-duration">Annual</div>
-        <div class="pricing-amount">₹12,000</div>
-        <div class="pricing-period">12 months</div>
-        <ul class="pricing-features">
-          <li>Everything in Quarterly</li>
-          <li>Personal training sessions</li>
-          <li>Priority access</li>
-          <li>Best value — save ₹6,000</li>
-        </ul>
-        <button class="pricing-btn" onclick="window.location.href='tel:09176198666'">Get Started</button>
-      </div>
+
     </div>
-    <p style="text-align:center; color:var(--text-dim); font-size:13px; margin-top:24px; font-family:var(--font-mono); letter-spacing:1px;">* Prices are indicative. Call to confirm current rates.</p>
   </div>
+
+  <!-- Vacuum Cleaners -->
+  <div class="product-category">
+    <div class="cat-title"><div class="cat-icon">🌀</div>Euroclean Vacuum Cleaners</div>
+    <div class="cards-grid">
+
+      <div class="product-card">
+        <div class="card-header">
+          <div class="card-icon">🧹</div>
+          <div>
+            <div class="card-name">Mop N Vac</div>
+            <div class="card-model">3-in-1 Cleaning System</div>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li>Sweep, Mop & Spray in one effortless go</li>
+          <li>Twin tank system — clean and dirty water always separate</li>
+          <li>Multi-surface cleaner for marble, hardwood & carpet</li>
+          <li>Unlike traditional cleaning, no cross-contamination</li>
+        </ul>
+      </div>
+
+      <div class="product-card">
+        <div class="card-badge">SMART</div>
+        <div class="card-header">
+          <div class="card-icon">🤖</div>
+          <div>
+            <div class="card-name">ROBO – LVAC Voice</div>
+            <div class="card-model">Robotic Vacuum Cleaner</div>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li>Intelligent Robotic Vacuum with Smart App & Voice Control</li>
+          <li>Sweep & Mop in one automated cycle</li>
+          <li>Long-lasting run time — cleans entire home autonomously</li>
+          <li>Auto Docking System for effortless automated recharge</li>
+        </ul>
+      </div>
+
+      <div class="product-card">
+        <div class="card-header">
+          <div class="card-icon">💨</div>
+          <div>
+            <div class="card-name">WDX2</div>
+            <div class="card-model">Wet & Dry Vacuum</div>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li>Multipurpose Wet and Dry Vacuum Cleaner</li>
+          <li>Best-in-class 1300W motor for powerful suction & blowing</li>
+          <li>13 accessories for deep cleaning with Auto Cord Winder</li>
+          <li>Dynamic Power Control, Auto Cleaning & Dust Bag Indicator</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Water Softener -->
+  <div class="product-category">
+    <div class="cat-title"><div class="cat-icon">🧪</div>Water Softener + Conditioner</div>
+    <div class="cards-grid">
+
+      <div class="product-card">
+        <div class="card-badge">SERIES</div>
+        <div class="card-header">
+          <div class="card-icon">🔬</div>
+          <div>
+            <div class="card-name">AWS Series</div>
+            <div class="card-model">AWS 3500 / AWS 2000 / AWS 1000</div>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li>Automated Regeneration — zero manual intervention needed</li>
+          <li>Intelligent Inside: smart control for optimal performance</li>
+          <li>Resin Volume: 35 Litres for heavy-duty softening</li>
+          <li>Salt Efficiency Controller + LCD Display Panel</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Air Purifier -->
+  <div class="product-category">
+    <div class="cat-title"><div class="cat-icon">🌬️</div>Air Purifier</div>
+    <div class="cards-grid">
+
+      <div class="product-card">
+        <div class="card-header">
+          <div class="card-icon">🌿</div>
+          <div>
+            <div class="card-name">HPA 500</div>
+            <div class="card-model">Air Purification System</div>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li>Removes dust particles that hold harmful chemicals</li>
+          <li>Pre-filter captures large particles: dust, hair, pet dander & fibres</li>
+          <li>Destroys micro-organisms and maintains room freshness</li>
+          <li>Ideal for allergy sufferers and homes with children & pets</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
 </section>
 
-<!-- LOCATION -->
-<section id="location">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-tag">Find Us</div>
-      <h2 class="section-title">COME<br>THROUGH</h2>
-      <p class="section-desc">We're on 80 Feet Road, Saligramam — opposite the Indian petrol bunk. You can't miss us.</p>
+<!-- WHY AQUAGUARD -->
+<section class="why-section" id="why">
+  <div class="why-grid">
+    <div>
+      <div class="section-label">Why Aquaguard</div>
+      <h2 class="section-title">Science Meets<br>Indian <em style="color:var(--cyan);font-style:normal">Living</em></h2>
+      <p class="section-sub" style="margin-bottom:0">Every Aquaguard product is engineered with patented technologies designed for the unique water and air quality challenges faced by Indian households.</p>
     </div>
-    <div class="location-grid reveal">
-      <div class="map-wrapper">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.7!2d80.2!3d13.06!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAzJzM2LjAiTiA4MMKwMTInMDAuMCJF!5e0!3m2!1sen!2sin!4v1" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="why-pillars">
+      <div class="pillar">
+        <div class="pillar-icon">🏆</div>
+        <div>
+          <h3>Patented Technology</h3>
+          <p>Active Copper Maxx, Zinc Booster & Intelligent Purity Sensors — innovations you won't find anywhere else.</p>
+        </div>
       </div>
-      <div class="location-info">
-        <div class="info-item">
-          <div class="info-icon">📍</div>
-          <div>
-            <div class="info-label">Address</div>
-            <div class="info-value">First Floor, 1, 5-A, 80 Feet Road,<br>Sathya Garden, Saligramam,<br>Chennai, Tamil Nadu 600093</div>
-          </div>
+      <div class="pillar">
+        <div class="pillar-icon">🔒</div>
+        <div>
+          <h3>Certified Safety</h3>
+          <p>All purifiers meet BIS, NSF & WHO standards. 99.9% removal of bacteria, viruses and heavy metals.</p>
         </div>
-        <div class="info-item">
-          <div class="info-icon">📞</div>
-          <div>
-            <div class="info-label">Phone</div>
-            <div class="info-value"><a href="tel:09176198666" style="color:var(--accent)">091761 98666</a></div>
-          </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🛠️</div>
+        <div>
+          <h3>Pan-India Service</h3>
+          <p>1500+ service centres across 1200+ cities. Free installation and regular maintenance visits.</p>
         </div>
-        <div class="info-item">
-          <div class="info-icon">🕐</div>
-          <div>
-            <div class="info-label">Hours</div>
-            <div class="info-value">Mon – Sat: 5:00 AM – 9:00 PM<br>Sunday: 6:00 AM – 12:00 PM</div>
-          </div>
-        </div>
-        <div class="info-item">
-          <div class="info-icon">🏷️</div>
-          <div>
-            <div class="info-label">Landmark</div>
-            <div class="info-value">Opposite Indian Petrol Bunk,<br>80 Feet Road</div>
-          </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">♻️</div>
+        <div>
+          <h3>Sustainable Design</h3>
+          <p>Water-efficient RO technology and energy-saving motors — better for your home and the planet.</p>
         </div>
       </div>
     </div>
@@ -1189,97 +615,50 @@ footer {
 </section>
 
 <!-- CTA -->
-<section style="padding-bottom: clamp(60px, 10vw, 120px);">
-  <div class="cta-banner reveal">
-    <h2>YOUR FIRST SET<br>STARTS <span style="color:var(--accent)">TODAY</span></h2>
-    <p>Stop thinking about it. Walk in, warm up, and start lifting.</p>
-    <a href="tel:09176198666" class="btn-primary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      Call 091761 98666
-    </a>
+<section class="cta-section" id="contact">
+  <div class="cta-card">
+    <h2>Experience Pure Living Today</h2>
+    <p>Book a free home demo and our expert will visit at your convenience — no pressure, just pure clarity.</p>
+    <div class="cta-form">
+      <input type="tel" placeholder="📞  Enter your mobile number">
+      <button>Book Free Demo</button>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo">FIRST <span>SET</span></div>
-        <p>Your neighborhood gym in Saligramam, Chennai. Honest equipment, honest pricing, honest results.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Navigate</h4>
-        <ul>
-          <li><a href="#features">What We Offer</a></li>
-          <li><a href="#schedule">Timings</a></li>
-          <li><a href="#pricing">Plans</a></li>
-          <li><a href="#testimonials">Reviews</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="#location">Find Us</a></li>
-          <li><a href="tel:09176198666">Call Us</a></li>
-          <li><a href="https://maps.google.com" target="_blank">Google Maps</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Facebook</a></li>
-          <li><a href="#">YouTube</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 First Set Gym, Chennai. All rights reserved.</p>
-      <div class="social-links">
-        <a href="#" class="social-link" aria-label="Instagram">📸</a>
-        <a href="#" class="social-link" aria-label="Facebook">👤</a>
-        <a href="#" class="social-link" aria-label="YouTube">▶️</a>
-      </div>
-    </div>
+  <div class="footer-logo">Aqua<span>guard</span></div>
+  <p>India's #1 Water Purifier Brand. Pure Living. Pure Life.</p>
+  <div class="footer-links">
+    <a href="#">Water Purifiers</a>
+    <a href="#">Vacuum Cleaners</a>
+    <a href="#">Air Purifiers</a>
+    <a href="#">Water Softeners</a>
+    <a href="#">Service Request</a>
+    <a href="#">Find Dealer</a>
+  </div>
+  <div class="footer-bottom">
+    © 2025 Aquaguard — Eureka Forbes Ltd. All rights reserved.
   </div>
 </footer>
 
 <script>
-// Cursor glow
-const glow = document.getElementById('cursorGlow');
-if (window.matchMedia('(pointer: fine)').matches) {
-  document.addEventListener('mousemove', (e) => {
-    glow.style.left = e.clientX + 'px';
-    glow.style.top = e.clientY + 'px';
+  // Scroll-reveal for product cards
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationDelay = `${(i % 3) * 0.12}s`;
+        entry.target.style.animation = 'fadeUp 0.7s ease both';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.product-card, .pillar, .stat-card').forEach(el => {
+    el.style.opacity = '0';
+    observer.observe(el);
   });
-} else {
-  glow.style.display = 'none';
-}
-
-// Mobile menu
-const toggle = document.getElementById('menuToggle');
-const nav = document.getElementById('navbar');
-toggle.addEventListener('click', () => nav.classList.toggle('open'));
-document.querySelectorAll('#navLinks a').forEach(link => {
-  link.addEventListener('click', () => nav.classList.remove('open'));
-});
-
-// Scroll reveal
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-reveals.forEach(el => observer.observe(el));
-
-// Nav background on scroll
-window.addEventListener('scroll', () => {
-  nav.style.borderBottomColor = window.scrollY > 50 ? 'var(--border)' : 'transparent';
-});
 </script>
 
 </body>
