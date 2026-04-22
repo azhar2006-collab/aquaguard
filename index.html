@@ -1,484 +1,903 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hannah Enterprises | Premium Packaging & Facility Solutions</title>
-  <meta name="description" content="Leading manufacturer and dealer of packaging materials, cleaning chemicals, dispensers, and facility supplies. Quality solutions for industrial and commercial needs.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hannah Enterprises – Manufacturer & Dealer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet"/>
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg: #050505;
-      --bg-alt: #0a0a0a;
-      --bg-card: #111111;
-      --accent: #a89f92; /* Minimal Stone/Taupe */
-      --accent-muted: rgba(168, 159, 146, 0.1);
-      --text: #ffffff;
-      --text-muted: #888888;
-      --line: rgba(255, 255, 255, 0.05);
-      --font-main: 'Inter', sans-serif;
-      --font-heading: 'Outfit', sans-serif;
-      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --navy:   #0a1a3c;
+      --blue:   #1042a4;
+      --red:    #c0272d;
+      --gold:   #f5c518;
+      --white:  #ffffff;
+      --off:    #f4f6fb;
+      --gray:   #6b7280;
+      --dark:   #0d1220;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: var(--font-main);
-      line-height: 1.6;
+      font-family: 'Barlow', sans-serif;
+      background: var(--off);
+      color: var(--navy);
       overflow-x: hidden;
     }
 
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--accent); }
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
 
-    /* --- LAYOUT --- */
-    .container { max-width: 1300px; margin: 0 auto; padding: 0 5vw; }
-    section { padding: 120px 0; }
-
-    /* --- NAVIGATION --- */
+    /* ══════════ NAV ══════════ */
     nav {
-      position: fixed; top: 0; width: 100%; z-index: 1000;
-      padding: 24px 0;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 70px;
+      background: rgba(10, 26, 60, 0.97);
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
-      background: rgba(5, 5, 5, 0.8);
-      transition: var(--transition);
+      border-bottom: 2px solid var(--red);
     }
-    nav .container { display: flex; align-items: center; justify-content: space-between; }
-    .logo {
-      font-family: var(--font-heading);
-      font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px;
-      text-decoration: none; color: var(--text);
-      display: flex; align-items: center; gap: 8px;
+    .nav-brand {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
     }
-    .logo span { color: var(--accent); }
-    .nav-links { list-style: none; display: flex; gap: 40px; }
+    .nav-logo {
+      width: 42px; height: 42px;
+      background: var(--red);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-logo svg { width: 24px; height: 24px; fill: white; }
+    .nav-brand-text {
+      display: flex; flex-direction: column; line-height: 1;
+    }
+    .nav-brand-text .top {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; font-weight: 900;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+    .nav-brand-text .sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem; font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+      list-style: none;
+    }
     .nav-links a {
-      text-decoration: none; color: var(--text-muted);
-      font-size: 0.9rem; font-weight: 500; transition: var(--transition);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color .2s;
     }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover { color: var(--gold); }
     .nav-cta {
-      background: var(--text); color: var(--bg);
-      padding: 10px 24px; border-radius: 2px;
-      font-size: 0.85rem; font-weight: 600; text-decoration: none;
-      transition: var(--transition);
+      background: var(--red); color: var(--white) !important;
+      padding: 8px 20px; border-radius: 4px;
+      transition: background .2s !important;
     }
-    .nav-cta:hover { background: var(--accent); transform: translateY(-2px); }
+    .nav-cta:hover { background: #a01f24 !important; }
 
-    /* --- HERO --- */
+    /* ══════════ HERO ══════════ */
     .hero {
-      position: relative; overflow: hidden; min-height: 90vh;
+      min-height: 100vh;
+      background: var(--dark);
+      position: relative; overflow: hidden;
       display: flex; align-items: center;
-      padding-top: 100px;
     }
     .hero-bg {
-      position: absolute; inset: 0; z-index: -1;
-      background: 
-        radial-gradient(circle at 80% 20%, var(--accent-muted) 0%, transparent 50%),
-        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.02) 0%, transparent 40%);
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 70% 50%, rgba(16,66,164,0.35) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 30% 80%, rgba(192,39,45,0.2) 0%, transparent 60%);
     }
-    .hero-content { max-width: 800px; }
-    .badge {
-      display: inline-block; padding: 6px 16px; 
-      background: var(--accent-muted); color: var(--accent);
-      border: 1px solid var(--accent); border-radius: 4px;
-      font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 2px; margin-bottom: 24px;
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image:
+        linear-gradient(rgba(255,255,255,1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px);
+      background-size: 50px 50px;
     }
-    .hero h1 {
-      font-family: var(--font-heading);
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      line-height: 1; font-weight: 800; letter-spacing: -2px;
-      margin-bottom: 32px;
+    .hero-stripe {
+      position: absolute; right: 0; top: 0; bottom: 0;
+      width: 45%;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%);
+      clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
+      opacity: 0.6;
     }
-    .hero h1 span { color: var(--accent); }
-    .hero p {
-      font-size: 1.1rem; color: var(--text-muted);
-      max-width: 550px; margin-bottom: 40px;
-      font-weight: 300;
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto;
+      padding: 120px 5% 80px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
     }
-    .hero-btns { display: flex; gap: 20px; }
-    .btn {
-      padding: 18px 36px; border-radius: 2px;
-      font-size: 0.9rem; font-weight: 600; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 12px;
-      transition: var(--transition);
-      text-transform: uppercase; letter-spacing: 1px;
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(192,39,45,0.15);
+      border: 1px solid rgba(192,39,45,0.5);
+      border-radius: 30px;
+      padding: 6px 16px;
+      margin-bottom: 24px;
     }
-    .btn-main { background: var(--accent); color: var(--bg); }
-    .btn-main:hover { background: var(--text); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-    .btn-side { border: 1px solid var(--line); color: var(--text); }
-    .btn-side:hover { background: var(--line); border-color: var(--text-muted); }
+    .hero-badge span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--red);
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: .5; transform: scale(1.4); }
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900; line-height: 1.05;
+      color: var(--white);
+    }
+    .hero-title .accent { color: var(--gold); }
+    .hero-tagline {
+      font-size: 1rem; font-weight: 300; letter-spacing: 1px;
+      color: rgba(255,255,255,0.55);
+      margin: 16px 0 32px;
+      font-style: italic;
+      text-transform: uppercase;
+    }
+    .hero-desc {
+      font-size: 1.05rem; line-height: 1.75;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      padding: 14px 34px;
+      border-radius: 4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(192,39,45,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(192,39,45,0.5); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      padding: 12px 32px;
+      border-radius: 4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(245,197,24,0.08); }
 
-    /* --- PRODUCTS --- */
-    .section-head { margin-bottom: 80px; }
-    .section-head h2 {
-      font-family: var(--font-heading); font-size: 3rem;
-      font-weight: 700; letter-spacing: -1px; margin-bottom: 16px;
+    /* HERO VISUAL */
+    .hero-visual {
+      display: flex; flex-direction: column; gap: 16px; align-items: flex-end;
     }
-    .section-head p { color: var(--text-muted); max-width: 600px; font-weight: 300; }
-    
-    .product-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 30px;
+    .hero-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 20px 24px;
+      width: 100%;
+      backdrop-filter: blur(8px);
+      transition: transform .3s;
     }
-    .category-card {
-      background: var(--bg-card); border: 1px solid var(--line);
-      padding: 50px; position: relative; overflow: hidden;
-      transition: var(--transition); cursor: pointer;
+    .hero-card:hover { transform: translateX(-4px); }
+    .hero-card-icon {
+      width: 40px; height: 40px;
+      background: var(--red);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
     }
-    .category-card::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 0;
-      background: var(--accent); transition: var(--transition);
+    .hero-card h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem; font-weight: 700; letter-spacing: 1px;
+      color: var(--white); margin-bottom: 4px;
     }
-    .category-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-    .category-card:hover::before { height: 100%; }
-    
-    .cat-icon {
-      font-size: 2.5rem; margin-bottom: 30px; display: block;
-      transition: var(--transition);
+    .hero-card p {
+      font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.4;
     }
-    .category-card:hover .cat-icon { transform: scale(1.1); }
-    .cat-title {
-      font-family: var(--font-heading); font-size: 1.5rem;
-      font-weight: 600; margin-bottom: 16px;
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+      width: 100%; margin-top: 8px;
     }
-    .cat-desc { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; }
-    .cat-link {
-      display: flex; align-items: center; gap: 8px;
-      margin-top: 30px; color: var(--accent); font-weight: 600;
-      font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;
-      opacity: 0; transform: translateX(-10px); transition: var(--transition);
-    }
-    .category-card:hover .cat-link { opacity: 1; transform: translateX(0); }
-
-    /* --- ABOUT / STATS --- */
-    .about { background-color: var(--bg-alt); }
-    .about-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .stat-box {
-      background: var(--bg); border: 1px solid var(--line);
-      padding: 40px; border-radius: 2px;
+    .stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px; padding: 16px 12px; text-align: center;
     }
     .stat-num {
-      font-family: var(--font-heading); font-size: 3rem;
-      font-weight: 800; color: var(--accent); line-height: 1;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 900;
+      color: var(--gold);
+    }
+    .stat-label {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 1px;
+      color: rgba(255,255,255,0.45); text-transform: uppercase; margin-top: 2px;
+    }
+
+    /* ══════════ BAND ══════════ */
+    .band {
+      background: var(--red);
+      padding: 18px 5%;
+      display: flex; align-items: center; justify-content: center;
+      gap: 60px; flex-wrap: wrap;
+    }
+    .band-item {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .band-item .icon { font-size: 1.3rem; }
+    .band-item span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* ══════════ PRODUCTS ══════════ */
+    .section {
+      padding: 100px 5%;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900; line-height: 1.1;
+      color: var(--navy);
+    }
+    .section-desc {
+      font-size: 1rem; line-height: 1.7;
+      color: var(--gray);
+      margin-top: 14px; max-width: 540px;
+    }
+    .section-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 60px; flex-wrap: wrap; gap: 20px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .product-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(10,26,60,0.07);
+      transition: transform .3s, box-shadow .3s;
+      position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(10,26,60,0.12);
+    }
+    .product-card:nth-child(1) .card-bar { background: var(--blue); }
+    .product-card:nth-child(2) .card-bar { background: var(--red); }
+    .product-card:nth-child(3) .card-bar { background: #0f7a3c; }
+    .product-card:nth-child(4) .card-bar { background: #7b3fb0; }
+    .product-card:nth-child(5) .card-bar { background: #c97d10; }
+    .product-card:nth-child(6) .card-bar { background: #1e8fa0; }
+    .card-bar { height: 5px; }
+    .card-body { padding: 28px; }
+    .card-icon {
+      width: 52px; height: 52px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+    .product-card:nth-child(1) .card-icon { background: rgba(16,66,164,0.1); }
+    .product-card:nth-child(2) .card-icon { background: rgba(192,39,45,0.1); }
+    .product-card:nth-child(3) .card-icon { background: rgba(15,122,60,0.1); }
+    .product-card:nth-child(4) .card-icon { background: rgba(123,63,176,0.1); }
+    .product-card:nth-child(5) .card-icon { background: rgba(201,125,16,0.1); }
+    .product-card:nth-child(6) .card-icon { background: rgba(30,143,160,0.1); }
+    .card-body h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem; font-weight: 700;
+      letter-spacing: 1px; color: var(--navy);
       margin-bottom: 8px;
     }
-    .stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-
-    /* --- REVEAL ANIMATION --- */
-    .reveal { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-
-    /* --- CONTACT --- */
-    .contact-wrap {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 100px;
+    .card-body p {
+      font-size: 0.88rem; line-height: 1.6; color: var(--gray);
     }
-    .contact-info h3 { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 24px; }
-    .contact-item { margin-bottom: 32px; }
-    .contact-item span { display: block; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
-    .contact-item p { font-size: 1.1rem; }
-
-    form { display: grid; gap: 20px; }
-    .form-group { display: grid; gap: 8px; }
-    label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600; }
-    input, textarea {
-      background: var(--bg-alt); border: 1px solid var(--line);
-      padding: 16px; color: var(--text); font-family: var(--font-main);
-      font-size: 0.95rem; outline: none; transition: var(--transition);
+    .card-tag {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase;
+      background: var(--off); color: var(--navy);
     }
-    input:focus, textarea:focus { border-color: var(--accent); background: var(--bg-card); }
-    .submit-btn {
-      background: var(--accent); color: var(--bg); border: none;
-      padding: 20px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1px; cursor: pointer; transition: var(--transition);
-    }
-    .submit-btn:hover { background: var(--text); }
 
-    /* --- FOOTER --- */
-    footer { padding: 80px 0 40px; border-top: 1px solid var(--line); background: var(--bg-alt); }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
-    .footer-desc { color: var(--text-muted); margin-top: 24px; font-weight: 300; font-size: 0.9rem; }
-    .footer-links h4 { font-family: var(--font-heading); margin-bottom: 24px; font-size: 1.1rem; }
-    .footer-links ul { list-style: none; }
-    .footer-links li { margin-bottom: 12px; }
-    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
-    .footer-links a:hover { color: var(--accent); }
-    .footer-bottom { padding: 30px 0; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--line); }
-
-    @media (max-width: 1024px) {
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .about-split { grid-template-columns: 1fr; }
-      .contact-wrap { grid-template-columns: 1fr; }
+    /* ══════════ WHY US ══════════ */
+    .why-section {
+      background: var(--navy);
+      padding: 100px 5%;
+      position: relative; overflow: hidden;
     }
-    @media (max-width: 768px) {
+    .why-section::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(16,66,164,0.3) 0%, transparent 70%);
+    }
+    .why-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .why-section .section-title { color: var(--white); }
+    .why-section .section-desc  { color: rgba(255,255,255,0.55); }
+    .features-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+    .feature-item {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .feature-num {
+      min-width: 40px; height: 40px;
+      background: var(--red);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 900;
+      color: var(--white);
+    }
+    .feature-text h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem; font-weight: 700; letter-spacing: 1px;
+      color: var(--white); margin-bottom: 4px;
+    }
+    .feature-text p {
+      font-size: 0.85rem; line-height: 1.5; color: rgba(255,255,255,0.5);
+    }
+    .why-right {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .why-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 28px 20px;
+      text-align: center;
+      transition: background .3s;
+    }
+    .why-box:hover { background: rgba(255,255,255,0.09); }
+    .why-box:first-child { grid-column: span 2; background: rgba(192,39,45,0.15); border-color: rgba(192,39,45,0.3); }
+    .why-box .big {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; font-weight: 900; color: var(--gold);
+    }
+    .why-box .label {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 1px;
+      color: rgba(255,255,255,0.5); text-transform: uppercase; margin-top: 4px;
+    }
+
+    /* ══════════ CONTACT ══════════ */
+    .contact-section {
+      padding: 100px 5%;
+      background: var(--off);
+    }
+    .contact-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 28px; margin-top: 40px; }
+    .contact-item {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .contact-icon {
+      width: 44px; height: 44px; min-width: 44px;
+      background: var(--blue);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .contact-item h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 4px;
+    }
+    .contact-item p {
+      font-size: 0.95rem; color: var(--navy); line-height: 1.5;
+    }
+    .contact-form {
+      background: var(--white);
+      border-radius: 16px; padding: 40px;
+      box-shadow: 0 8px 40px rgba(10,26,60,0.08);
+      border: 1px solid rgba(10,26,60,0.06);
+    }
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 900; color: var(--navy);
+      margin-bottom: 24px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--gray);
+      margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%; padding: 12px 14px;
+      border: 1.5px solid rgba(10,26,60,0.12);
+      border-radius: 6px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.9rem; color: var(--navy);
+      background: var(--off);
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--blue);
+      background: white;
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%;
+      background: var(--red); color: var(--white);
+      padding: 14px;
+      border: none; border-radius: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .form-submit:hover { background: #a01f24; transform: translateY(-1px); }
+
+    /* ══════════ FOOTER ══════════ */
+    footer {
+      background: var(--dark);
+      border-top: 3px solid var(--red);
+      padding: 60px 5% 30px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px;
+    }
+    .footer-brand .top {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 900;
+      color: var(--white);
+    }
+    .footer-brand .sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem; font-weight: 600;
+      color: var(--gold); letter-spacing: 3px; text-transform: uppercase;
+    }
+    .footer-desc {
+      font-size: 0.85rem; line-height: 1.7;
+      color: rgba(255,255,255,0.45);
+      margin-top: 16px; max-width: 280px;
+    }
+    .footer-heading {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 0.85rem; color: rgba(255,255,255,0.5);
+      text-decoration: none; transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 1200px; margin: 50px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy {
+      font-size: 0.78rem; color: rgba(255,255,255,0.3);
+    }
+    .footer-tagline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(245,197,24,0.5);
+    }
+
+    /* ANIMATIONS */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .products-grid { grid-template-columns: 1fr 1fr; }
+      .why-inner { grid-template-columns: 1fr; }
+      .why-right { display: none; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
       .nav-links { display: none; }
-      .hero h1 { font-size: 3.5rem; }
-      section { padding: 80px 0; }
+      .products-grid { grid-template-columns: 1fr; }
+      .band { gap: 24px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
-  <nav id="nav">
-    <div class="container">
-      <a href="#" class="logo">HANNAH <span>ENTERPRISES</span></a>
-      <ul class="nav-links">
-        <li><a href="#products">Solutions</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+<!-- ══════ NAV ══════ -->
+<nav>
+  <a class="nav-brand" href="#">
+   
+    <div class="nav-brand-text">
+      <span class="top">Hannah Enterprises</span>
+      <span class="sub">Manufacturer &amp; Dealer</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Get Quote</a></li>
+  </ul>
+</nav>
+
+<!-- ══════ HERO ══════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-stripe"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <div class="dot"></div>
+        <span>Manufacturer &amp; Dealer — Est. Chennai</span>
+      </div>
+      <h1 class="hero-title">
+        Hannah<br/><span class="accent">Enterprises</span>
+      </h1>
+      <p class="hero-tagline">This Path Was Given By Heavenly Vision</p>
+      <p class="hero-desc">
+        Your trusted partner for packaging materials, cleaning chemicals, paper products, dispensers, and stationary items. Quality you can count on, delivered across industries.
+      </p>
+      <div class="hero-btns">
+        <a href="#products" class="btn-primary">Explore Products</a>
+        <a href="#contact" class="btn-outline">Request a Quote</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="card-icon">📦</div>
+        <h4>Packaging Materials</h4>
+        <p>Industrial & commercial packaging solutions for every need.</p>
+      </div>
+      <div class="hero-card">
+        <div class="card-icon">🧴</div>
+        <h4>Cleaning Chemicals</h4>
+        <p>Professional-grade hygiene and sanitation chemicals.</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Product Lines</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Quality Assured</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ BAND ══════ -->
+<div class="band">
+  <div class="band-item"><span class="icon">✅</span><span>Quality Assured</span></div>
+  <div class="band-item"><span class="icon">🚚</span><span>Fast Delivery</span></div>
+  <div class="band-item"><span class="icon">🤝</span><span>Bulk Orders Welcome</span></div>
+  <div class="band-item"><span class="icon">💼</span><span>B2B &amp; Retail</span></div>
+  <div class="band-item"><span class="icon">📞</span><span>24/7 Support</span></div>
+</div>
+
+<!-- ══════ PRODUCTS ══════ -->
+<div id="products">
+  <div class="section">
+    <div class="section-header fade-up">
+      <div>
+        <div class="section-label">What We Offer</div>
+        <h2 class="section-title">Our Product Range</h2>
+        <p class="section-desc">From manufacturing to dealing — we cover every essential supply your business needs.</p>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="product-card fade-up">
+        <div class="card-bar"></div>
+        <div class="card-body">
+          <div class="card-icon">📦</div>
+          <h3>Packaging Materials</h3>
+          <p>Boxes, tapes, wraps, pouches and complete packaging solutions for industrial and retail use.</p>
+          <span class="card-tag">Manufacturer</span>
+        </div>
+      </div>
+      <div class="product-card fade-up">
+        <div class="card-bar"></div>
+        <div class="card-body">
+          <div class="card-icon">🧻</div>
+          <h3>Paper Products</h3>
+          <p>Tissue rolls, hand towels, toilet paper, facial tissues and all essential paper hygiene products.</p>
+          <span class="card-tag">Dealer</span>
+        </div>
+      </div>
+      <div class="product-card fade-up">
+        <div class="card-bar"></div>
+        <div class="card-body">
+          <div class="card-icon">🧪</div>
+          <h3>Cleaning Chemicals</h3>
+          <p>Floor cleaners, disinfectants, detergents, degreasers and professional sanitation chemicals.</p>
+          <span class="card-tag">Manufacturer</span>
+        </div>
+      </div>
+      <div class="product-card fade-up">
+        <div class="card-bar"></div>
+        <div class="card-body">
+          <div class="card-icon">🧹</div>
+          <h3>Cleaning Equipments</h3>
+          <p>Mops, brooms, scrubbers, wringers and professional cleaning equipment for all environments.</p>
+          <span class="card-tag">Dealer</span>
+        </div>
+      </div>
+      <div class="product-card fade-up">
+        <div class="card-bar"></div>
+        <div class="card-body">
+          <div class="card-icon">🚿</div>
+          <h3>Dispensers</h3>
+          <p>Soap dispensers, hand sanitizer stands, paper towel dispensers and automated hygiene units.</p>
+          <span class="card-tag">Dealer</span>
+        </div>
+      </div>
+      <div class="product-card fade-up">
+        <div class="card-bar"></div>
+        <div class="card-body">
+          <div class="card-icon">✏️</div>
+          <h3>Stationary Items</h3>
+          <p>Pens, notepads, files, binders, and office stationery supplies for all business needs.</p>
+          <span class="card-tag">Dealer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ WHY US ══════ -->
+<section class="why-section" id="about">
+  <div class="why-inner">
+    <div>
+      <div class="section-label" style="color:var(--gold)">Why Choose Us</div>
+      <h2 class="section-title">Built on Trust &amp;<br/>Heavenly Vision</h2>
+      <p class="section-desc">Hannah Enterprises is founded on the belief that every path is divinely guided. We bring integrity, quality, and dedication to every partnership.</p>
+      <div class="features-list">
+        <div class="feature-item fade-up">
+          <div class="feature-num">01</div>
+          <div class="feature-text">
+            <h4>Manufacturer &amp; Dealer</h4>
+            <p>We both manufacture and deal, giving you a single source for diverse product needs with competitive pricing.</p>
+          </div>
+        </div>
+        <div class="feature-item fade-up">
+          <div class="feature-num">02</div>
+          <div class="feature-text">
+            <h4>Quality Guaranteed</h4>
+            <p>Every product is inspected before dispatch. We do not compromise on quality, ever.</p>
+          </div>
+        </div>
+        <div class="feature-item fade-up">
+          <div class="feature-num">03</div>
+          <div class="feature-text">
+            <h4>Bulk &amp; Custom Orders</h4>
+            <p>Whether you need 10 units or 10,000 — we handle orders of all sizes with equal care and speed.</p>
+          </div>
+        </div>
+        <div class="feature-item fade-up">
+          <div class="feature-num">04</div>
+          <div class="feature-text">
+            <h4>Pan-India Delivery</h4>
+            <p>Reliable logistics ensuring your orders reach you on time, every time across the country.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-right">
+      <div class="why-box">
+        <div class="big">500+</div>
+        <div class="label">Happy Clients</div>
+      </div>
+      <div class="why-box">
+        <div class="big">6</div>
+        <div class="label">Product Categories</div>
+      </div>
+      <div class="why-box">
+        <div class="big">100%</div>
+        <div class="label">Quality Checked</div>
+      </div>
+      <div class="why-box">
+        <div class="big">24/7</div>
+        <div class="label">Customer Support</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CONTACT ══════ -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Let's Do<br/>Business Together</h2>
+      <p class="section-desc">Reach out for bulk orders, product enquiries, or dealer partnerships. We respond fast.</p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Location</h4>
+            <p>Chennai, Tamil Nadu, India</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <h4>WhatsApp / Call</h4>
+            <p>Available on WhatsApp<br/>@hannah_enterprises</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <h4>Business Hours</h4>
+            <p>Mon – Sat: 9:00 AM – 7:00 PM<br/>Sunday: By Appointment</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form fade-up">
+      <div class="form-title">Send an Enquiry</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Full name"/>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@company.com"/>
+      </div>
+      <div class="form-group">
+        <label>Product Interest</label>
+        <select>
+          <option value="">Select a category</option>
+          <option>Packaging Materials</option>
+          <option>Paper Products</option>
+          <option>Cleaning Chemicals</option>
+          <option>Cleaning Equipments</option>
+          <option>Dispensers</option>
+          <option>Stationary Items</option>
+          <option>Multiple / Bulk Order</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us about your requirements…"></textarea>
+      </div>
+      <button class="form-submit" onclick="alert('Thank you! We will contact you shortly.')">Send Enquiry →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <div class="top">Hannah Enterprises</div>
+        <div class="sub">Manufacturer &amp; Dealer</div>
+      </div>
+      <p class="footer-desc">This path was given by heavenly vision. Serving businesses across India with quality packaging, cleaning and stationery products.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Products</div>
+      <ul class="footer-links">
+        <li><a href="#">Packaging Materials</a></li>
+        <li><a href="#">Paper Products</a></li>
+        <li><a href="#">Cleaning Chemicals</a></li>
+        <li><a href="#">Cleaning Equipments</a></li>
+        <li><a href="#">Dispensers</a></li>
+        <li><a href="#">Stationary Items</a></li>
       </ul>
-      <a href="#contact" class="nav-cta">Get a Quote</a>
     </div>
-  </nav>
-
-  <!-- HERO SECTION -->
-  <section class="hero" id="home">
-    <div class="hero-bg"></div>
-    <div class="container">
-      <div class="hero-content">
-        <div class="badge">Industrial Excellence Since 2005</div>
-        <h1>Your Partner in <span>Quality</span> Scale & Supply.</h1>
-        <p>Manufacturer and Dealer delivering world-class packaging materials, facility hygiene solutions, and corporate stationery essentials across India.</p>
-        <div class="hero-btns">
-          <a href="#products" class="btn btn-main">Explore Catalog</a>
-          <a href="#about" class="btn btn-side">Our Story</a>
-        </div>
-      </div>
+    <div>
+      <div class="footer-heading">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Mission</a></li>
+        <li><a href="#">Bulk Orders</a></li>
+        <li><a href="#">Dealer Enquiry</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
     </div>
-  </section>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Hannah Enterprises. All rights reserved.</div>
+    <div class="footer-tagline">This path was given by heavenly vision</div>
+  </div>
+</footer>
 
-  <!-- PRODUCTS SECTION -->
-  <section id="products">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2>Industrial <span>Solutions</span></h2>
-        <p>Comprehensive supply chain support for packaging, hygiene, and office operations. High-quality inventory ready for immediate dispatch.</p>
-      </div>
-
-      <div class="product-grid">
-        <!-- 01 -->
-        <div class="category-card reveal">
-          <span class="cat-icon">📦</span>
-          <h3 class="cat-title">Packaging Materials</h3>
-          <p class="cat-desc">Corrugated boxes, bubble wraps, stretch films, and tapes designed to protect your products during transit.</p>
-          <div class="cat-link">View Details →</div>
-        </div>
-        <!-- 02 -->
-        <div class="category-card reveal">
-          <span class="cat-icon">🧪</span>
-          <h3 class="cat-title">Cleaning Chemicals</h3>
-          <p class="cat-desc">Industrial-grade disinfectants, surface cleaners, and hygiene chemicals for high-traffic environments.</p>
-          <div class="cat-link">View Details →</div>
-        </div>
-        <!-- 03 -->
-        <div class="category-card reveal">
-          <span class="cat-icon">💧</span>
-          <h3 class="cat-title">Dispensers</h3>
-          <p class="cat-desc">Modern automated and manual dispensing systems for soaps, sanitizers, and paper products.</p>
-          <div class="cat-link">View Details →</div>
-        </div>
-        <!-- 04 -->
-        <div class="category-card reveal">
-          <span class="cat-icon">🧻</span>
-          <h3 class="cat-title">Paper Products</h3>
-          <p class="cat-desc">Premium tissue rolls, paper towels, and napkins tailored for commercial and hospitality standards.</p>
-          <div class="cat-link">View Details →</div>
-        </div>
-        <!-- 05 -->
-        <div class="category-card reveal">
-          <span class="cat-icon">🧹</span>
-          <h3 class="cat-title">Cleaning Equipment</h3>
-          <p class="cat-desc">Professional-grade machinery, tools, and accessories for maintaining facility cleanliness.</p>
-          <div class="cat-link">View Details →</div>
-        </div>
-        <!-- 06 -->
-        <div class="category-card reveal">
-          <span class="cat-icon">🖊️</span>
-          <h3 class="cat-title">Stationery Items</h3>
-          <p class="cat-desc">Corporate office supplies, writing instruments, and administrative essentials delivered in bulk.</p>
-          <div class="cat-link">View Details →</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT SECTION -->
-  <section class="about" id="about">
-    <div class="container">
-      <div class="about-split">
-        <div class="reveal">
-          <div class="badge">Our Expertise</div>
-          <h2>Scale. Reliability. <span>Precision.</span></h2>
-          <p style="margin: 24px 0 40px; color: var(--text-muted);">Founded in 2005, Hannah Enterprises has grown from a local manufacturer into a national leader in facility and packaging supplies. We pride ourselves on direct manufacturing pricing and an unshakeable commitment to quality control.</p>
-          <div class="stats-grid">
-            <div class="stat-box">
-              <div class="stat-num">18+</div>
-              <div class="stat-label">Years of Trust</div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-num">6K+</div>
-              <div class="stat-label">Product SKUs</div>
-            </div>
-          </div>
-        </div>
-        <div class="reveal">
-          <div class="stat-box" style="padding: 60px;">
-            <p style="font-size: 1.5rem; font-weight: 300; line-height: 1.4; font-style: italic;">"Our mission is to simplify industrial procurement, providing a single point of contact for all your facility and packaging needs."</p>
-            <p style="margin-top: 30px; font-weight: 700; color: var(--accent);">— Managing Director</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT SECTION -->
-  <section id="contact">
-    <div class="container">
-      <div class="contact-wrap">
-        <div class="reveal">
-          <div class="section-head" style="margin-bottom: 40px;">
-            <h2>Get in <span>Touch</span></h2>
-            <p>Ready to streamline your supply chain? Request a customized bulk quote from our team today.</p>
-          </div>
-          <div class="contact-info">
-            <div class="contact-item">
-              <span>Visit Us</span>
-              <p>Plot No. 42, Industrial Estate, Phase II, Chennai – 600058</p>
-            </div>
-            <div class="contact-item">
-              <span>Call / WhatsApp</span>
-              <p>+91 98400 12345</p>
-            </div>
-            <div class="contact-item">
-              <span>Email</span>
-              <p>contact@hannahenterprises.in</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="reveal">
-          <form id="contactForm">
-            <div class="form-group">
-              <label>Full Name</label>
-              <input type="text" placeholder="John Doe" required>
-            </div>
-            <div class="form-group">
-              <label>Email Address</label>
-              <input type="email" placeholder="john@company.com" required>
-            </div>
-            <div class="form-group">
-              <label>Requirement Category</label>
-              <select style="background: var(--bg-alt); border: 1px solid var(--line); padding: 16px; color: var(--text);">
-                <option>Select a category...</option>
-                <option>Packaging Materials</option>
-                <option>Cleaning Chemicals</option>
-                <option>Dispensers</option>
-                <option>Paper Products</option>
-                <option>Cleaning Equipment</option>
-                <option>Stationery Items</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Message</label>
-              <textarea rows="5" placeholder="Share specific quantities or product details..."></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Inquiry</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#" class="logo">HANNAH <span>ENTERPRISES</span></a>
-          <p class="footer-desc">The leading manufacturer and national dealer for high-performance packaging and facility chemicals. Integrated supply solutions since 2005.</p>
-        </div>
-        <div class="footer-links">
-          <h4>Solutions</h4>
-          <ul>
-            <li><a href="#">Packaging</a></li>
-            <li><a href="#">Chemicals</a></li>
-            <li><a href="#">Paper Products</a></li>
-            <li><a href="#">Stationery</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Certifications</a></li>
-            <li><a href="#">Locations</a></li>
-            <li><a href="#">Careers</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h4>Support</h4>
-          <ul>
-            <li><a href="#">Request Quote</a></li>
-            <li><a href="#">Track Shipment</a></li>
-            <li><a href="#">Contact Us</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Hannah Enterprises. All rights reserved.</p>
-        <p>A Sustainable Solution Provider.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Reveal animation logic
-    function reveal() {
-      var reveals = document.querySelectorAll(".reveal");
-      for (var i = 0; i < reveals.length; i++) {
-        var windowHeight = window.innerHeight;
-        var elementTop = reveals[i].getBoundingClientRect().top;
-        var elementVisible = 150;
-        if (elementTop < windowHeight - elementVisible) {
-          reveals[i].classList.add("active");
-        }
-      }
-    }
-    window.addEventListener("scroll", reveal);
-    window.addEventListener("load", reveal);
-
-    // Nav background change on scroll
-    window.addEventListener("scroll", function() {
-      var nav = document.getElementById("nav");
-      if (window.scrollY > 50) {
-        nav.style.padding = "16px 0";
-      } else {
-        nav.style.padding = "24px 0";
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
       }
     });
+  }, { threshold: 0.15 });
 
-    // Form Mock Submission
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Smooth nav highlight
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const href = link.getAttribute('href');
+      if (href === '#') return;
       e.preventDefault();
-      const btn = this.querySelector('.submit-btn');
-      btn.innerHTML = 'Sending...';
-      setTimeout(() => {
-        btn.innerHTML = 'Enquiry Sent Successfully';
-        btn.style.background = '#28a745';
-        this.reset();
-      }, 1500);
+      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
     });
-  </script>
+  });
+</script>
 </body>
 </html>
