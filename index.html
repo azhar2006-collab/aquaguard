@@ -1,663 +1,1205 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aquaguard — Pure Living. Pure Life.</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PackPro Industries — Packaging & Facility Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
 <style>
-  :root {
-    --blue-deep: #0a1628;
-    --blue-mid: #0d2d5e;
-    --blue-bright: #1565c0;
-    --cyan: #00b4d8;
-    --cyan-light: #48cae4;
-    --gold: #f0a500;
-    --white: #f8faff;
-    --text-muted: #8fa8c8;
-    --card-bg: rgba(13,45,94,0.55);
-  }
+  /* ── RESET & VARIABLES ─────────────────────────────── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy:   #0f0a0a;
+    --navy2:  #1a1010;
+    --navy3:  #221414;
+    --orange: #8B1A1A;
+    --amber:  #e8cfa8;
+    --white:  #f7f0e8;
+    --grey:   #9a8f8a;
+    --line:   rgba(255,240,220,0.07);
+    --font-head: 'Barlow Condensed', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
 
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--blue-deep);
+    background: var(--navy);
     color: var(--white);
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-body);
     overflow-x: hidden;
   }
 
-  /* ── NAV ── */
+  /* ── SCROLLBAR ──────────────────────────────────────── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 2px; }
+
+  /* ── NAV ────────────────────────────────────────────── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 60px;
-    background: rgba(10,22,40,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(0,180,216,0.15);
+    padding: 0 5vw;
+    height: 72px;
+    background: rgba(6,13,31,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    animation: slideDown .6s ease both;
   }
-  .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.7rem; font-weight: 900;
-    color: var(--cyan);
-    letter-spacing: 1px;
-  }
-  .logo span { color: var(--gold); }
-  .nav-links { display: flex; gap: 36px; list-style: none; }
-  .nav-links a {
-    color: var(--text-muted); text-decoration: none;
-    font-size: 0.88rem; font-weight: 500; letter-spacing: 0.5px;
-    transition: color 0.3s;
-  }
-  .nav-links a:hover { color: var(--cyan); }
-  .nav-cta {
-    background: linear-gradient(135deg, var(--cyan), var(--blue-bright));
-    color: #fff; padding: 10px 26px; border-radius: 50px;
-    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;
-    text-decoration: none; transition: opacity 0.3s;
-  }
-  .nav-cta:hover { opacity: 0.85; }
 
-  /* ── HERO ── */
+  @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-head);
+    font-size: 1.5rem; font-weight: 800; letter-spacing: 1px;
+    text-decoration: none; color: var(--white);
+  }
+  .nav-logo span { color: var(--orange); }
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: var(--orange);
+    clip-path: polygon(0 0, 80% 0, 100% 20%, 100% 100%, 20% 100%, 0 80%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .75rem; font-weight: 900; color: #fff;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none; color: var(--grey);
+    font-size: .85rem; font-weight: 500; letter-spacing: .5px;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--orange); color: #fff !important;
+    padding: .45rem 1.2rem; border-radius: 2px;
+    font-weight: 600 !important; letter-spacing: 1px !important;
+    font-size: .8rem !important; text-transform: uppercase;
+    transition: background .2s !important;
+  }
+  .nav-cta:hover { background: #6e1414 !important; color: #fff !important; }
+
+  /* ── HERO ───────────────────────────────────────────── */
   .hero {
     min-height: 100vh;
-    display: flex; align-items: center;
-    position: relative; overflow: hidden;
-    padding: 120px 60px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
   }
+
   .hero-bg {
-    position: absolute; inset: 0; z-index: 0;
+    position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(21,101,192,0.25) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 80% at 20% 80%, rgba(0,180,216,0.12) 0%, transparent 60%),
-      linear-gradient(160deg, #0a1628 0%, #0d2d5e 50%, #0a1628 100%);
+      radial-gradient(ellipse 60% 80% at 70% 50%, rgba(139,26,26,.18) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(232,207,168,.06) 0%, transparent 50%);
   }
-  .hero-waves {
-    position: absolute; bottom: -2px; left: 0; right: 0;
+
+  /* grid lines */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: linear-gradient(to bottom, transparent 5%, black 30%, black 70%, transparent 95%);
   }
-  /* Animated circles */
-  .bubble {
-    position: absolute; border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,180,216,0.12), transparent 70%);
-    animation: float linear infinite;
+
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 5vw 80px 5vw;
+    position: relative; z-index: 2;
   }
-  @keyframes float {
-    0% { transform: translateY(0) scale(1); opacity: 0.6; }
-    50% { transform: translateY(-40px) scale(1.05); opacity: 1; }
-    100% { transform: translateY(0) scale(1); opacity: 0.6; }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,85,0,.12);
+    border: 1px solid rgba(255,85,0,.3);
+    padding: .35rem .9rem;
+    border-radius: 2px;
+    font-size: .75rem; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--orange);
+    width: fit-content; margin-bottom: 2rem;
+    animation: fadeUp .8s .2s ease both;
   }
-  .hero-content { position: relative; z-index: 1; max-width: 620px; }
-  .hero-badge {
-    display: inline-block;
-    background: rgba(0,180,216,0.12);
-    border: 1px solid rgba(0,180,216,0.3);
-    color: var(--cyan-light);
-    padding: 6px 18px; border-radius: 50px;
-    font-size: 0.78rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-    margin-bottom: 24px;
-    animation: fadeUp 0.8s ease both;
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+  .hero-title {
+    font-family: var(--font-head);
+    font-size: clamp(3.5rem, 6vw, 7rem);
+    font-weight: 900;
+    line-height: .92;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeUp .8s .35s ease both;
   }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    font-weight: 900; line-height: 1.05;
-    margin-bottom: 28px;
-    animation: fadeUp 0.9s 0.1s ease both;
+  .hero-title em { font-style: normal; color: var(--orange); display: block; }
+
+  .hero-sub {
+    font-size: 1rem; color: var(--grey); line-height: 1.7;
+    max-width: 440px; margin-bottom: 2.5rem;
+    animation: fadeUp .8s .5s ease both;
+    font-weight: 300;
   }
-  .hero h1 em { font-style: normal; color: var(--cyan); }
-  .hero p {
-    font-size: 1.1rem; color: var(--text-muted); line-height: 1.7;
-    max-width: 480px; margin-bottom: 40px;
-    animation: fadeUp 0.9s 0.2s ease both;
+
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp .8s .65s ease both;
   }
-  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 0.9s 0.3s ease both; }
+
   .btn-primary {
-    background: linear-gradient(135deg, var(--cyan), var(--blue-bright));
-    color: #fff; padding: 16px 36px; border-radius: 50px;
-    font-weight: 600; font-size: 0.95rem; text-decoration: none;
-    box-shadow: 0 8px 32px rgba(0,180,216,0.3);
-    transition: transform 0.3s, box-shadow 0.3s;
+    background: var(--orange); color: #fff;
+    padding: .9rem 2rem; border-radius: 2px;
+    font-weight: 600; letter-spacing: 1.5px; font-size: .85rem;
+    text-transform: uppercase; text-decoration: none;
+    border: none; cursor: pointer;
+    transition: all .25s;
+    display: inline-flex; align-items: center; gap: 8px;
   }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,180,216,0.45); }
-  .btn-ghost {
-    border: 1px solid rgba(0,180,216,0.4); color: var(--cyan);
-    padding: 16px 36px; border-radius: 50px;
-    font-weight: 600; font-size: 0.95rem; text-decoration: none;
-    transition: background 0.3s;
+  .btn-primary:hover { background: #6e1414; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(139,26,26,.4); }
+
+  .btn-outline {
+    background: transparent; color: var(--white);
+    padding: .9rem 2rem; border-radius: 2px;
+    font-weight: 500; letter-spacing: 1px; font-size: .85rem;
+    text-transform: uppercase; text-decoration: none;
+    border: 1px solid rgba(255,255,255,.2); cursor: pointer;
+    transition: all .25s;
+    display: inline-flex; align-items: center; gap: 8px;
   }
-  .btn-ghost:hover { background: rgba(0,180,216,0.1); }
+  .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,.05); }
+
   .hero-stats {
-    position: absolute; right: 60px; top: 50%;
-    transform: translateY(-50%);
-    display: flex; flex-direction: column; gap: 24px;
-    z-index: 1; animation: fadeLeft 1s 0.4s ease both;
+    display: flex; gap: 2.5rem; margin-top: 3.5rem;
+    animation: fadeUp .8s .8s ease both;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
   }
-  .stat-card {
-    background: var(--card-bg);
-    border: 1px solid rgba(0,180,216,0.2);
-    backdrop-filter: blur(12px);
-    padding: 20px 28px; border-radius: 16px;
-    text-align: center;
-  }
+  .stat-item { display: flex; flex-direction: column; gap: 4px; }
   .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem; font-weight: 900; color: var(--cyan);
+    font-family: var(--font-head);
+    font-size: 2.2rem; font-weight: 800; color: var(--white);
+    line-height: 1;
   }
-  .stat-label { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.5px; }
+  .stat-num span { color: var(--orange); }
+  .stat-label { font-size: .75rem; color: var(--grey); letter-spacing: 1px; text-transform: uppercase; }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeLeft {
-    from { opacity: 0; transform: translate(30px, -50%); }
-    to { opacity: 1; transform: translate(0, -50%); }
+  .hero-right {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    padding: 120px 5vw 80px 0;
+    animation: fadeUp .8s .3s ease both;
   }
 
-  /* ── SECTION COMMON ── */
-  section { padding: 100px 60px; }
-  .section-label {
-    color: var(--cyan); font-size: 0.78rem; font-weight: 700;
-    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px;
+  .hero-visual {
+    position: relative;
+    width: min(420px, 90%);
+    aspect-ratio: 1;
+  }
+
+  .hero-visual-ring {
+    position: absolute; inset: 0;
+    border: 1px solid rgba(255,85,0,.2);
+    border-radius: 50%;
+    animation: spin 20s linear infinite;
+  }
+  .hero-visual-ring::before {
+    content: '';
+    position: absolute; top: -4px; left: 50%; transform: translateX(-50%);
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--orange);
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .hero-visual-ring2 {
+    position: absolute; inset: 30px;
+    border: 1px solid rgba(255,184,0,.15);
+    border-radius: 50%;
+    animation: spin 14s linear infinite reverse;
+  }
+
+  .hero-center-box {
+    position: absolute; inset: 60px;
+    background: var(--navy2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px;
+    overflow: hidden;
+  }
+  .hero-center-box::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at center, rgba(139,26,26,.18) 0%, transparent 70%);
+  }
+
+  .product-orbit {
+    position: absolute;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+  }
+  .orbit-icon {
+    width: 48px; height: 48px;
+    background: var(--navy3);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    transition: all .3s;
+  }
+  .orbit-label { font-size: .6rem; color: var(--grey); text-align: center; letter-spacing: .5px; }
+
+  .orbit-1 { top: -20px; left: 50%; transform: translateX(-50%); }
+  .orbit-2 { right: -20px; top: 50%; transform: translateY(-50%); }
+  .orbit-3 { bottom: -20px; left: 50%; transform: translateX(-50%); }
+  .orbit-4 { left: -20px; top: 50%; transform: translateY(-50%); }
+  .orbit-5 { top: 8%; right: 8%; }
+  .orbit-6 { bottom: 8%; left: 8%; }
+
+  .center-icon {
+    font-size: 3rem; z-index: 1;
+  }
+  .center-text {
+    font-family: var(--font-head);
+    font-size: 1rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; z-index: 1;
+  }
+
+  /* ── MARQUEE ────────────────────────────────────────── */
+  .marquee-wrap {
+    background: var(--orange);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-flex; gap: 0;
+    animation: marquee 25s linear infinite;
+  }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-item {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 0 2rem;
+    font-family: var(--font-head);
+    font-size: 1rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: #fff;
+  }
+  .marquee-dot { width: 6px; height: 6px; background: rgba(255,255,255,.5); border-radius: 50%; }
+
+  /* ── SECTIONS SHARED ────────────────────────────────── */
+  section { padding: 100px 5vw; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--orange); font-size: .72rem; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .section-tag::before {
+    content: ''; display: block;
+    width: 24px; height: 2px; background: var(--orange);
   }
   .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900;
-    line-height: 1.15; margin-bottom: 16px;
+    font-family: var(--font-head);
+    font-size: clamp(2.4rem, 4vw, 4rem);
+    font-weight: 800; text-transform: uppercase;
+    line-height: 1; letter-spacing: -0.5px;
   }
-  .section-sub { color: var(--text-muted); font-size: 1.05rem; max-width: 560px; line-height: 1.7; }
+  .section-title em { color: var(--orange); font-style: normal; }
 
-  /* ── PRODUCTS ── */
-  .products { background: linear-gradient(180deg, var(--blue-deep) 0%, #061120 100%); }
-  .products-header { text-align: center; margin-bottom: 70px; }
-  .products-header .section-sub { margin: 0 auto; }
+  /* ── PRODUCTS ───────────────────────────────────────── */
+  .products { background: var(--navy2); }
 
-  .product-category { margin-bottom: 80px; }
-  .cat-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem; font-weight: 700;
-    color: var(--cyan); margin-bottom: 32px;
-    display: flex; align-items: center; gap: 14px;
+  .products-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.5rem;
+    margin-bottom: 4rem;
   }
-  .cat-title::after {
-    content: ''; flex: 1; height: 1px;
-    background: linear-gradient(to right, rgba(0,180,216,0.3), transparent);
-  }
-  .cat-icon {
-    width: 40px; height: 40px; border-radius: 10px;
-    background: rgba(0,180,216,0.15);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem;
+  .products-header p {
+    max-width: 380px; color: var(--grey);
+    font-size: .95rem; line-height: 1.7; font-weight: 300;
   }
 
-  .cards-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 24px;
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
   }
+
   .product-card {
-    background: var(--card-bg);
-    border: 1px solid rgba(0,180,216,0.15);
-    border-radius: 20px; padding: 32px;
-    backdrop-filter: blur(12px);
-    transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+    background: var(--navy);
+    padding: 2.5rem 2rem;
     position: relative; overflow: hidden;
+    cursor: pointer;
+    transition: all .3s;
+    border: 1px solid var(--line);
   }
   .product-card::before {
     content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--cyan), var(--blue-bright));
-    opacity: 0; transition: opacity 0.35s;
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: var(--orange);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .3s;
   }
-  .product-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(0,180,216,0.4);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(0,180,216,0.08);
-  }
-  .product-card:hover::before { opacity: 1; }
+  .product-card:hover::before { transform: scaleX(1); }
+  .product-card:hover { border-color: rgba(139,26,26,.4); background: var(--navy3); transform: translateY(-4px); }
 
-  .card-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+  .card-num {
+    font-family: var(--font-head);
+    font-size: 4.5rem; font-weight: 900; color: var(--line);
+    line-height: 1; position: absolute; right: 1.5rem; top: 1rem;
+    transition: color .3s;
+  }
+  .product-card:hover .card-num { color: rgba(255,85,0,.15); }
+
   .card-icon {
-    width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
-    background: linear-gradient(135deg, rgba(0,180,216,0.2), rgba(21,101,192,0.2));
-    border: 1px solid rgba(0,180,216,0.2);
+    width: 56px; height: 56px;
+    background: rgba(139,26,26,.12);
+    border: 1px solid rgba(139,26,26,.25);
+    border-radius: 4px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
+    margin-bottom: 1.5rem;
+    transition: all .3s;
   }
-  .card-name { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; }
-  .card-model { font-size: 0.78rem; color: var(--cyan); margin-top: 3px; letter-spacing: 0.5px; }
-  .card-badge {
-    position: absolute; top: 20px; right: 20px;
-    background: rgba(240,165,0,0.15); border: 1px solid rgba(240,165,0,0.3);
-    color: var(--gold); padding: 4px 12px; border-radius: 50px;
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
-  }
-  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .feature-list li {
-    display: flex; align-items: flex-start; gap: 10px;
-    font-size: 0.88rem; color: #c0d4ec; line-height: 1.5;
-  }
-  .feature-list li::before {
-    content: '◆'; color: var(--cyan); font-size: 0.5rem;
-    margin-top: 5px; flex-shrink: 0;
+  .product-card:hover .card-icon {
+    background: var(--orange);
+    border-color: var(--orange);
   }
 
-  /* ── WHY SECTION ── */
-  .why-section {
-    background: linear-gradient(135deg, #061120 0%, var(--blue-mid) 50%, #061120 100%);
+  .card-title {
+    font-family: var(--font-head);
+    font-size: 1.5rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .5px; margin-bottom: .6rem;
+  }
+  .card-desc { font-size: .85rem; color: var(--grey); line-height: 1.65; font-weight: 300; }
+
+  .card-items {
+    margin-top: 1.2rem;
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .card-item-tag {
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--line);
+    padding: .25rem .6rem;
+    border-radius: 2px;
+    font-size: .7rem; color: var(--grey);
+    letter-spacing: .5px;
+  }
+
+  .card-arrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 1.5rem; color: var(--orange);
+    font-size: .8rem; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; opacity: 0; transform: translateX(-8px);
+    transition: all .3s;
+  }
+  .product-card:hover .card-arrow { opacity: 1; transform: translateX(0); }
+
+  /* ── WHY US ─────────────────────────────────────────── */
+  .why-us {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5vw; align-items: center;
+  }
+
+  .why-left { position: relative; }
+  .why-main-box {
+    background: var(--navy2);
+    border: 1px solid var(--line);
+    padding: 3rem;
+    border-radius: 4px;
     position: relative; overflow: hidden;
   }
-  .why-section::before {
+  .why-main-box::after {
     content: '';
-    position: absolute; top: -200px; right: -200px;
-    width: 600px; height: 600px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,180,216,0.06) 0%, transparent 70%);
+    position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: linear-gradient(to bottom, var(--orange), #c44);
   }
-  .why-grid {
+
+  .why-big-num {
+    font-family: var(--font-head);
+    font-size: 7rem; font-weight: 900; color: var(--orange);
+    line-height: 1; margin-bottom: .5rem;
+  }
+  .why-big-label {
+    font-size: 1rem; color: var(--white); font-weight: 500;
+    margin-bottom: 2rem; line-height: 1.5;
+  }
+
+  .why-mini-grid {
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: center;
+    gap: 1.5rem; margin-top: 2rem;
   }
-  .why-pillars { display: flex; flex-direction: column; gap: 20px; }
-  .pillar {
-    background: rgba(13,45,94,0.5);
-    border: 1px solid rgba(0,180,216,0.15);
-    border-radius: 16px; padding: 24px;
-    display: flex; gap: 20px; align-items: flex-start;
-    transition: border-color 0.3s;
+  .why-mini {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--line);
+    padding: 1.2rem;
+    border-radius: 3px;
   }
-  .pillar:hover { border-color: rgba(0,180,216,0.4); }
-  .pillar-icon {
-    width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
-    background: linear-gradient(135deg, rgba(0,180,216,0.2), rgba(21,101,192,0.2));
+  .why-mini-num {
+    font-family: var(--font-head);
+    font-size: 1.8rem; font-weight: 800; color: var(--amber);
+    margin-bottom: 4px;
+  }
+  .why-mini-label { font-size: .78rem; color: var(--grey); }
+
+  .why-right {}
+  .why-features { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2.5rem; }
+
+  .feature-row {
+    display: flex; align-items: flex-start; gap: 1.2rem;
+    padding: 1.5rem;
+    background: var(--navy2);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    transition: all .3s;
+  }
+  .feature-row:hover { border-color: rgba(139,26,26,.35); background: var(--navy3); }
+
+  .feature-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: rgba(139,26,26,.12);
+    border-radius: 4px;
     display: flex; align-items: center; justify-content: center;
     font-size: 1.3rem;
   }
-  .pillar h3 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
-  .pillar p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+  .feature-title { font-weight: 600; font-size: .95rem; margin-bottom: 4px; }
+  .feature-desc { font-size: .83rem; color: var(--grey); line-height: 1.6; font-weight: 300; }
 
-  /* ── CTA ── */
-  .cta-section {
-    text-align: center;
-    background: linear-gradient(180deg, #061120 0%, var(--blue-deep) 100%);
-    padding: 100px 60px;
+  /* ── PROCESS ─────────────────────────────────────────── */
+  .process { background: var(--navy2); }
+  .process-header { text-align: center; margin-bottom: 4rem; }
+  .process-header p { color: var(--grey); max-width: 500px; margin: 1rem auto 0; line-height: 1.7; font-weight: 300; }
+
+  .process-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
   }
-  .cta-card {
-    max-width: 720px; margin: 0 auto;
-    background: linear-gradient(135deg, rgba(13,45,94,0.8), rgba(10,22,40,0.8));
-    border: 1px solid rgba(0,180,216,0.25);
-    border-radius: 28px; padding: 64px 48px;
-    backdrop-filter: blur(16px);
-    position: relative; overflow: hidden;
-  }
-  .cta-card::before {
+  .process-steps::before {
     content: '';
-    position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
-    width: 400px; height: 400px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,180,216,0.08), transparent 70%);
+    position: absolute; top: 36px; left: 12.5%; right: 12.5%;
+    height: 1px; background: linear-gradient(to right, var(--orange), #c44, var(--orange));
   }
-  .cta-card h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem; font-weight: 900; margin-bottom: 16px;
-    position: relative;
-  }
-  .cta-card p {
-    color: var(--text-muted); font-size: 1rem; margin-bottom: 36px;
-    position: relative;
-  }
-  .cta-form { display: flex; gap: 12px; max-width: 440px; margin: 0 auto; position: relative; }
-  .cta-form input {
-    flex: 1; background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(0,180,216,0.2); border-radius: 50px;
-    padding: 14px 22px; color: var(--white); font-size: 0.9rem;
-    outline: none; font-family: 'DM Sans', sans-serif;
-    transition: border-color 0.3s;
-  }
-  .cta-form input:focus { border-color: var(--cyan); }
-  .cta-form input::placeholder { color: var(--text-muted); }
-  .cta-form button {
-    background: linear-gradient(135deg, var(--cyan), var(--blue-bright));
-    color: #fff; border: none; padding: 14px 28px; border-radius: 50px;
-    font-weight: 600; font-size: 0.9rem; cursor: pointer;
-    font-family: 'DM Sans', sans-serif; white-space: nowrap;
-    transition: opacity 0.3s;
-  }
-  .cta-form button:hover { opacity: 0.85; }
 
-  /* ── FOOTER ── */
+  .process-step {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; padding: 0 1.5rem;
+  }
+  .step-num {
+    width: 72px; height: 72px;
+    background: var(--navy);
+    border: 2px solid var(--orange);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head);
+    font-size: 1.5rem; font-weight: 800; color: var(--orange);
+    margin-bottom: 1.5rem;
+    position: relative; z-index: 1;
+    transition: all .3s;
+  }
+  .process-step:hover .step-num { background: var(--orange); color: #fff; }
+
+  .step-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; text-transform: uppercase; margin-bottom: .5rem; }
+  .step-desc { font-size: .82rem; color: var(--grey); line-height: 1.6; font-weight: 300; }
+
+  /* ── TESTIMONIALS ───────────────────────────────────── */
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .testi-card {
+    background: var(--navy2);
+    border: 1px solid var(--line);
+    padding: 2rem;
+    border-radius: 3px;
+    position: relative;
+    transition: all .3s;
+  }
+  .testi-card:hover { border-color: rgba(139,26,26,.3); transform: translateY(-4px); }
+  .testi-quote {
+    font-family: var(--font-head);
+    font-size: 4rem; font-weight: 900; color: var(--orange);
+    line-height: 1; margin-bottom: 1rem; opacity: .5;
+  }
+  .testi-text { font-size: .88rem; color: var(--grey); line-height: 1.75; font-weight: 300; margin-bottom: 1.5rem; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: .75rem; }
+  .testi-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--orange), #c44);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: #fff;
+  }
+  .testi-name { font-weight: 600; font-size: .88rem; }
+  .testi-role { font-size: .75rem; color: var(--grey); }
+  .testi-stars { color: var(--amber); font-size: .9rem; margin-bottom: .5rem; }
+
+  /* ── CONTACT ────────────────────────────────────────── */
+  .contact {
+    background: var(--navy2);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5vw; align-items: start;
+  }
+
+  .contact-info {}
+  .contact-info p { color: var(--grey); font-size: .95rem; line-height: 1.8; margin: 1.5rem 0 2.5rem; font-weight: 300; }
+
+  .contact-details { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-row {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    background: var(--navy);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+  }
+  .contact-row-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+  .contact-row-title { font-weight: 600; font-size: .85rem; margin-bottom: 2px; }
+  .contact-row-val { font-size: .82rem; color: var(--grey); font-weight: 300; line-height: 1.5; }
+
+  /* Form */
+  .contact-form {
+    background: var(--navy);
+    border: 1px solid var(--line);
+    padding: 2.5rem;
+    border-radius: 4px;
+  }
+  .form-title {
+    font-family: var(--font-head);
+    font-size: 1.5rem; font-weight: 700;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: .5rem; }
+  .form-group.full { grid-column: 1 / -1; }
+
+  label { font-size: .75rem; color: var(--grey); letter-spacing: 1px; text-transform: uppercase; font-weight: 500; }
+
+  input, textarea, select {
+    background: var(--navy2);
+    border: 1px solid var(--line);
+    color: var(--white);
+    padding: .8rem 1rem;
+    border-radius: 2px;
+    font-family: var(--font-body);
+    font-size: .9rem;
+    outline: none;
+    transition: border-color .2s;
+    width: 100%;
+  }
+  input:focus, textarea:focus, select:focus { border-color: var(--orange); }
+  select option { background: var(--navy2); }
+  textarea { min-height: 110px; resize: vertical; }
+
+  .form-submit {
+    grid-column: 1 / -1;
+    background: var(--orange); color: #fff;
+    padding: 1rem 2rem;
+    border: none; border-radius: 2px;
+    font-family: var(--font-body);
+    font-size: .9rem; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; transition: all .25s;
+    width: 100%;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .form-submit:hover { background: #6e1414; box-shadow: 0 8px 30px rgba(139,26,26,.35); }
+
+  /* ── FOOTER ─────────────────────────────────────────── */
   footer {
-    background: #04090f;
-    border-top: 1px solid rgba(0,180,216,0.1);
-    padding: 60px; text-align: center;
+    background: var(--navy);
+    border-top: 1px solid var(--line);
+    padding: 60px 5vw 30px;
   }
-  .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem; font-weight: 900; color: var(--cyan);
-    margin-bottom: 12px;
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; padding-bottom: 3rem;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 2rem;
   }
-  .footer-logo span { color: var(--gold); }
-  footer p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 24px; }
-  .footer-links { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
-  .footer-links a { color: var(--text-muted); font-size: 0.83rem; text-decoration: none; transition: color 0.3s; }
-  .footer-links a:hover { color: var(--cyan); }
+  .footer-brand p { color: var(--grey); font-size: .85rem; line-height: 1.8; margin: 1rem 0 1.5rem; font-weight: 300; max-width: 280px; }
+  .footer-col-title { font-family: var(--font-head); font-size: .95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+  .footer-links a { text-decoration: none; color: var(--grey); font-size: .83rem; transition: color .2s; font-weight: 300; }
+  .footer-links a:hover { color: var(--orange); }
+
+  .social-row { display: flex; gap: .8rem; }
+  .social-btn {
+    width: 36px; height: 36px;
+    background: var(--navy2); border: 1px solid var(--line);
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .9rem; text-decoration: none;
+    transition: all .2s;
+    cursor: pointer;
+  }
+  .social-btn:hover { background: var(--orange); border-color: var(--orange); }
+
   .footer-bottom {
-    margin-top: 40px; padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    color: rgba(143,168,200,0.5); font-size: 0.78rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-bottom p { font-size: .78rem; color: var(--grey); font-weight: 300; }
+  .footer-bottom span { color: var(--orange); }
+
+  /* ── MOBILE ─────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-steps { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .process-steps::before { display: none; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
   }
 
-  /* Wave SVG divider */
-  .wave-divider { line-height: 0; }
-  .wave-divider svg { display: block; }
-
-  @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
     .nav-links { display: none; }
-    section { padding: 70px 24px; }
-    .hero { padding: 100px 24px 60px; }
-    .hero-stats { display: none; }
-    .why-grid { grid-template-columns: 1fr; gap: 40px; }
-    .cta-form { flex-direction: column; }
-    footer { padding: 40px 24px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding-top: 120px; }
+    .hero-stats { gap: 1.5rem; }
+    .products-grid { grid-template-columns: 1fr; }
+    .why-us { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
   }
+
+  /* ── SCROLL ANIMATIONS ───────────────────────────────── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ── NAV ── -->
 <nav>
-  <div class="logo">Aqua<span>guard</span></div>
+  <a href="#" class="nav-logo">
+    <div class="logo-icon">P</div>
+    Pack<span>Pro</span>
+  </a>
   <ul class="nav-links">
     <li><a href="#products">Products</a></li>
-    <li><a href="#why">Why Us</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+    <li><a href="#contact" class="nav-cta">Get Quote</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Get Free Demo</a>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
+<!-- ── HERO ── -->
+<section class="hero" id="home">
   <div class="hero-bg"></div>
-  <!-- Decorative bubbles -->
-  <div class="bubble" style="width:320px;height:320px;left:55%;top:10%;animation-duration:8s;"></div>
-  <div class="bubble" style="width:180px;height:180px;left:75%;top:55%;animation-duration:6s;animation-delay:1s;"></div>
-  <div class="bubble" style="width:100px;height:100px;left:40%;top:70%;animation-duration:7s;animation-delay:2s;"></div>
 
-  <div class="hero-content">
-    <div class="hero-badge">🌊 Trusted Since 1984</div>
-    <h1>Pure Living.<br><em>Pure Life.</em></h1>
-    <p>India's most trusted brand for water purification, air purification, and smart home cleaning solutions. Technology you can trust, water you can feel.</p>
+  <div class="hero-left">
+    <div class="hero-tag">📦 Manufacturer &amp; Dealer Since 2005</div>
+    <h1 class="hero-title">
+      Packaging<br/>
+      <em>&amp; Facility</em><br/>
+      Solutions
+    </h1>
+    <p class="hero-sub">
+      Your one-stop source for premium packaging materials, cleaning chemicals, dispensers, paper products, equipment and stationery — delivered reliably across industries.
+    </p>
     <div class="hero-btns">
-      <a href="#products" class="btn-primary">Explore Products</a>
-      <a href="#contact" class="btn-ghost">Book a Demo</a>
+      <a href="#products" class="btn-primary">Explore Products ↓</a>
+      <a href="#contact" class="btn-outline">Request Catalog</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">18<span>+</span></div>
+        <div class="stat-label">Years Active</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2400<span>+</span></div>
+        <div class="stat-label">Clients Served</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">6<span>K+</span></div>
+        <div class="stat-label">SKUs Available</div>
+      </div>
     </div>
   </div>
 
-  <div class="hero-stats">
-    <div class="stat-card">
-      <div class="stat-num">25M+</div>
-      <div class="stat-label">Happy Homes</div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-visual-ring"></div>
+      <div class="hero-visual-ring2"></div>
+      <div class="hero-center-box">
+        <div class="center-icon">📦</div>
+        <div class="center-text">PackPro</div>
+      </div>
+      <div class="product-orbit orbit-1"><div class="orbit-icon">🧴</div><div class="orbit-label">Chemicals</div></div>
+      <div class="product-orbit orbit-2"><div class="orbit-icon">🖊️</div><div class="orbit-label">Stationery</div></div>
+      <div class="product-orbit orbit-3"><div class="orbit-icon">🧹</div><div class="orbit-label">Equipment</div></div>
+      <div class="product-orbit orbit-4"><div class="orbit-icon">🧻</div><div class="orbit-label">Paper</div></div>
+      <div class="product-orbit orbit-5"><div class="orbit-icon">💧</div><div class="orbit-label">Dispensers</div></div>
+      <div class="product-orbit orbit-6"><div class="orbit-icon">📦</div><div class="orbit-label">Packaging</div></div>
     </div>
-    <div class="stat-card">
-      <div class="stat-num">99.9%</div>
-      <div class="stat-label">Purification Rate</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">40+</div>
-      <div class="stat-label">Years of Trust</div>
-    </div>
-  </div>
-
-  <div class="hero-waves">
-    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#061120"/>
-    </svg>
   </div>
 </section>
 
-<!-- PRODUCTS -->
+<!-- ── MARQUEE ── -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <!-- first copy -->
+    <span class="marquee-item">📦 Packaging Materials <span class="marquee-dot"></span></span>
+    <span class="marquee-item">🧴 Cleaning Chemicals <span class="marquee-dot"></span></span>
+    <span class="marquee-item">💧 Dispensers <span class="marquee-dot"></span></span>
+    <span class="marquee-item">🧻 Paper Products <span class="marquee-dot"></span></span>
+    <span class="marquee-item">🧹 Cleaning Equipment <span class="marquee-dot"></span></span>
+    <span class="marquee-item">🖊️ Stationery Items <span class="marquee-dot"></span></span>
+    <span class="marquee-item">🏭 ISO Certified Manufacturer <span class="marquee-dot"></span></span>
+    <span class="marquee-item">🚚 Pan-India Delivery <span class="marquee-dot"></span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">📦 Packaging Materials <span class="marquee-dot"></span></span>
+    <span class="marquee-item">🧴 Cleaning Chemicals <span class="marquee-dot"></span></span>
+    <span class="marquee-item">💧 Dispensers <span class="marquee-dot"></span></span>
+    <span class="marquee-item">🧻 Paper Products <span class="marquee-dot"></span></span>
+    <span class="marquee-item">🧹 Cleaning Equipment <span class="marquee-dot"></span></span>
+    <span class="marquee-item">🖊️ Stationery Items <span class="marquee-dot"></span></span>
+    <span class="marquee-item">🏭 ISO Certified Manufacturer <span class="marquee-dot"></span></span>
+    <span class="marquee-item">🚚 Pan-India Delivery <span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- ── PRODUCTS ── -->
 <section class="products" id="products">
-  <div class="products-header">
-    <div class="section-label">Our Range</div>
-    <h2 class="section-title">Complete Home Solutions</h2>
-    <p class="section-sub">From pure drinking water to fresh air and spotless floors — every product engineered for Indian homes.</p>
-  </div>
-
-  <!-- Water Purifiers -->
-  <div class="product-category">
-    <div class="cat-title"><div class="cat-icon">💧</div>Water Purifiers</div>
-    <div class="cards-grid">
-
-      <div class="product-card">
-        <div class="card-badge">BESTSELLER</div>
-        <div class="card-header">
-          <div class="card-icon">🔥</div>
-          <div>
-            <div class="card-name">Classic Hot UV</div>
-            <div class="card-model">e-Boiling Technology</div>
-          </div>
-        </div>
-        <ul class="feature-list">
-          <li>Patented Active Copper Maxx with Zinc Booster Technology</li>
-          <li>Intelligent Purity Sensor (IPS) — continuously scans water for 100% health</li>
-          <li>Temperature control: Hot, Warm & Ambient</li>
-          <li>Advanced UV e-boiling for deep purification</li>
-        </ul>
-      </div>
-
-      <div class="product-card">
-        <div class="card-badge">NEW</div>
-        <div class="card-header">
-          <div class="card-icon">💎</div>
-          <div>
-            <div class="card-name">Eden</div>
-            <div class="card-model">RO + UV + MTDS + SS</div>
-          </div>
-        </div>
-        <ul class="feature-list">
-          <li>RO + UV + MTDS + SS multi-stage purification system</li>
-          <li>Patented Active Copper Maxx with Zinc Booster Technology</li>
-          <li>304 Grade Stainless Steel Storage Tank — hygienic & durable</li>
-          <li>7.5 Litre tank capacity with Intuitive LED Display</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Vacuum Cleaners -->
-  <div class="product-category">
-    <div class="cat-title"><div class="cat-icon">🌀</div>Euroclean Vacuum Cleaners</div>
-    <div class="cards-grid">
-
-      <div class="product-card">
-        <div class="card-header">
-          <div class="card-icon">🧹</div>
-          <div>
-            <div class="card-name">Mop N Vac</div>
-            <div class="card-model">3-in-1 Cleaning System</div>
-          </div>
-        </div>
-        <ul class="feature-list">
-          <li>Sweep, Mop & Spray in one effortless go</li>
-          <li>Twin tank system — clean and dirty water always separate</li>
-          <li>Multi-surface cleaner for marble, hardwood & carpet</li>
-          <li>Unlike traditional cleaning, no cross-contamination</li>
-        </ul>
-      </div>
-
-      <div class="product-card">
-        <div class="card-badge">SMART</div>
-        <div class="card-header">
-          <div class="card-icon">🤖</div>
-          <div>
-            <div class="card-name">ROBO – LVAC Voice</div>
-            <div class="card-model">Robotic Vacuum Cleaner</div>
-          </div>
-        </div>
-        <ul class="feature-list">
-          <li>Intelligent Robotic Vacuum with Smart App & Voice Control</li>
-          <li>Sweep & Mop in one automated cycle</li>
-          <li>Long-lasting run time — cleans entire home autonomously</li>
-          <li>Auto Docking System for effortless automated recharge</li>
-        </ul>
-      </div>
-
-      <div class="product-card">
-        <div class="card-header">
-          <div class="card-icon">💨</div>
-          <div>
-            <div class="card-name">WDX2</div>
-            <div class="card-model">Wet & Dry Vacuum</div>
-          </div>
-        </div>
-        <ul class="feature-list">
-          <li>Multipurpose Wet and Dry Vacuum Cleaner</li>
-          <li>Best-in-class 1300W motor for powerful suction & blowing</li>
-          <li>13 accessories for deep cleaning with Auto Cord Winder</li>
-          <li>Dynamic Power Control, Auto Cleaning & Dust Bag Indicator</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Water Softener -->
-  <div class="product-category">
-    <div class="cat-title"><div class="cat-icon">🧪</div>Water Softener + Conditioner</div>
-    <div class="cards-grid">
-
-      <div class="product-card">
-        <div class="card-badge">SERIES</div>
-        <div class="card-header">
-          <div class="card-icon">🔬</div>
-          <div>
-            <div class="card-name">AWS Series</div>
-            <div class="card-model">AWS 3500 / AWS 2000 / AWS 1000</div>
-          </div>
-        </div>
-        <ul class="feature-list">
-          <li>Automated Regeneration — zero manual intervention needed</li>
-          <li>Intelligent Inside: smart control for optimal performance</li>
-          <li>Resin Volume: 35 Litres for heavy-duty softening</li>
-          <li>Salt Efficiency Controller + LCD Display Panel</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Air Purifier -->
-  <div class="product-category">
-    <div class="cat-title"><div class="cat-icon">🌬️</div>Air Purifier</div>
-    <div class="cards-grid">
-
-      <div class="product-card">
-        <div class="card-header">
-          <div class="card-icon">🌿</div>
-          <div>
-            <div class="card-name">HPA 500</div>
-            <div class="card-model">Air Purification System</div>
-          </div>
-        </div>
-        <ul class="feature-list">
-          <li>Removes dust particles that hold harmful chemicals</li>
-          <li>Pre-filter captures large particles: dust, hair, pet dander & fibres</li>
-          <li>Destroys micro-organisms and maintains room freshness</li>
-          <li>Ideal for allergy sufferers and homes with children & pets</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-
-</section>
-
-<!-- WHY AQUAGUARD -->
-<section class="why-section" id="why">
-  <div class="why-grid">
+  <div class="products-header reveal">
     <div>
-      <div class="section-label">Why Aquaguard</div>
-      <h2 class="section-title">Science Meets<br>Indian <em style="color:var(--cyan);font-style:normal">Living</em></h2>
-      <p class="section-sub" style="margin-bottom:0">Every Aquaguard product is engineered with patented technologies designed for the unique water and air quality challenges faced by Indian households.</p>
+      <div class="section-tag">Our Range</div>
+      <h2 class="section-title">Product <em>Categories</em></h2>
     </div>
-    <div class="why-pillars">
-      <div class="pillar">
-        <div class="pillar-icon">🏆</div>
-        <div>
-          <h3>Patented Technology</h3>
-          <p>Active Copper Maxx, Zinc Booster & Intelligent Purity Sensors — innovations you won't find anywhere else.</p>
+    <p>From packaging lines to pristine offices — we supply everything your facility and operations need, all under one roof.</p>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card reveal">
+      <div class="card-num">01</div>
+      <div class="card-icon">📦</div>
+      <div class="card-title">Packaging Materials</div>
+      <div class="card-desc">Industrial-grade packaging solutions for every product type and shipment volume — boxes, wraps, tapes, and custom solutions.</div>
+      <div class="card-items">
+        <span class="card-item-tag">Corrugated Boxes</span>
+        <span class="card-item-tag">Bubble Wrap</span>
+        <span class="card-item-tag">Stretch Film</span>
+        <span class="card-item-tag">Packing Tape</span>
+        <span class="card-item-tag">Foam Inserts</span>
+        <span class="card-item-tag">Mailer Bags</span>
+      </div>
+      <div class="card-arrow">View Products →</div>
+    </div>
+
+    <div class="product-card reveal">
+      <div class="card-num">02</div>
+      <div class="card-icon">🧴</div>
+      <div class="card-title">Cleaning Chemicals</div>
+      <div class="card-desc">Professional-grade disinfectants, degreasers, surface cleaners, and hygiene chemicals for every sector.</div>
+      <div class="card-items">
+        <span class="card-item-tag">Disinfectants</span>
+        <span class="card-item-tag">Degreasers</span>
+        <span class="card-item-tag">Floor Cleaners</span>
+        <span class="card-item-tag">Glass Cleaners</span>
+        <span class="card-item-tag">Hand Sanitizers</span>
+        <span class="card-item-tag">Toilet Cleaners</span>
+      </div>
+      <div class="card-arrow">View Products →</div>
+    </div>
+
+    <div class="product-card reveal">
+      <div class="card-num">03</div>
+      <div class="card-icon">💧</div>
+      <div class="card-title">Dispensers</div>
+      <div class="card-desc">Hygienic dispensing systems for soaps, sanitizers, paper towels and more — manual, sensor-based &amp; foam options.</div>
+      <div class="card-items">
+        <span class="card-item-tag">Soap Dispensers</span>
+        <span class="card-item-tag">Sanitizer Units</span>
+        <span class="card-item-tag">Towel Dispensers</span>
+        <span class="card-item-tag">Foam Systems</span>
+        <span class="card-item-tag">Auto-Sensor</span>
+      </div>
+      <div class="card-arrow">View Products →</div>
+    </div>
+
+    <div class="product-card reveal">
+      <div class="card-num">04</div>
+      <div class="card-icon">🧻</div>
+      <div class="card-title">Paper Products</div>
+      <div class="card-desc">Premium hygiene and facility paper products — tissues, towels, toilet rolls, napkins and kraft paper for all applications.</div>
+      <div class="card-items">
+        <span class="card-item-tag">Tissue Paper</span>
+        <span class="card-item-tag">Toilet Rolls</span>
+        <span class="card-item-tag">Hand Towels</span>
+        <span class="card-item-tag">Napkins</span>
+        <span class="card-item-tag">Kraft Paper</span>
+        <span class="card-item-tag">Wax Paper</span>
+      </div>
+      <div class="card-arrow">View Products →</div>
+    </div>
+
+    <div class="product-card reveal">
+      <div class="card-num">05</div>
+      <div class="card-icon">🧹</div>
+      <div class="card-title">Cleaning Equipment</div>
+      <div class="card-desc">Durable professional cleaning machinery and tools — from scrubbers to vacuum systems for industrial and commercial use.</div>
+      <div class="card-items">
+        <span class="card-item-tag">Floor Scrubbers</span>
+        <span class="card-item-tag">Vacuum Cleaners</span>
+        <span class="card-item-tag">Mop Systems</span>
+        <span class="card-item-tag">Pressure Washers</span>
+        <span class="card-item-tag">Trolleys</span>
+        <span class="card-item-tag">Dust Mops</span>
+      </div>
+      <div class="card-arrow">View Products →</div>
+    </div>
+
+    <div class="product-card reveal">
+      <div class="card-num">06</div>
+      <div class="card-icon">🖊️</div>
+      <div class="card-title">Stationery Items</div>
+      <div class="card-desc">Complete office and corporate stationery supplies — pens, files, binders, notepads, printer supplies and more in bulk.</div>
+      <div class="card-items">
+        <span class="card-item-tag">Pens &amp; Markers</span>
+        <span class="card-item-tag">Files &amp; Folders</span>
+        <span class="card-item-tag">Notepads</span>
+        <span class="card-item-tag">Printer Paper</span>
+        <span class="card-item-tag">Staplers</span>
+        <span class="card-item-tag">Envelopes</span>
+      </div>
+      <div class="card-arrow">View Products →</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── WHY US ── -->
+<section id="about" style="padding: 100px 5vw;">
+  <div class="why-us">
+    <div class="why-left reveal">
+      <div class="why-main-box">
+        <div class="why-big-num">18+</div>
+        <div class="why-big-label">Years of trusted partnership<br/>with businesses across India</div>
+        <p style="color:var(--grey);font-size:.88rem;line-height:1.75;font-weight:300;">
+          PackPro began as a small packaging manufacturer and has grown into a full-spectrum facility supply partner trusted by hotels, hospitals, factories, offices, and retail chains nationwide.
+        </p>
+        <div class="why-mini-grid">
+          <div class="why-mini">
+            <div class="why-mini-num">2400+</div>
+            <div class="why-mini-label">Active Clients</div>
+          </div>
+          <div class="why-mini">
+            <div class="why-mini-num">6K+</div>
+            <div class="why-mini-label">SKUs in Stock</div>
+          </div>
+          <div class="why-mini">
+            <div class="why-mini-num">48hr</div>
+            <div class="why-mini-label">Avg. Delivery</div>
+          </div>
+          <div class="why-mini">
+            <div class="why-mini-num">ISO</div>
+            <div class="why-mini-label">9001 Certified</div>
+          </div>
         </div>
       </div>
-      <div class="pillar">
-        <div class="pillar-icon">🔒</div>
-        <div>
-          <h3>Certified Safety</h3>
-          <p>All purifiers meet BIS, NSF & WHO standards. 99.9% removal of bacteria, viruses and heavy metals.</p>
+    </div>
+
+    <div class="why-right reveal">
+      <div class="section-tag">Why Choose Us</div>
+      <h2 class="section-title">Built on<br/><em>Reliability</em></h2>
+      <div class="why-features">
+        <div class="feature-row">
+          <div class="feature-icon">🏭</div>
+          <div>
+            <div class="feature-title">Direct Manufacturer Pricing</div>
+            <div class="feature-desc">We manufacture key product lines in-house, cutting out middlemen and passing the savings directly to your business.</div>
+          </div>
         </div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">🛠️</div>
-        <div>
-          <h3>Pan-India Service</h3>
-          <p>1500+ service centres across 1200+ cities. Free installation and regular maintenance visits.</p>
+        <div class="feature-row">
+          <div class="feature-icon">🚚</div>
+          <div>
+            <div class="feature-title">Pan-India Rapid Delivery</div>
+            <div class="feature-desc">Integrated logistics network ensures timely delivery across metros and Tier-2 cities, with real-time shipment tracking.</div>
+          </div>
         </div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">♻️</div>
-        <div>
-          <h3>Sustainable Design</h3>
-          <p>Water-efficient RO technology and energy-saving motors — better for your home and the planet.</p>
+        <div class="feature-row">
+          <div class="feature-icon">🔄</div>
+          <div>
+            <div class="feature-title">Flexible Order Quantities</div>
+            <div class="feature-desc">Whether you're a startup or a large enterprise, we accommodate orders of all sizes with competitive bulk pricing tiers.</div>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="feature-icon">🛡️</div>
+          <div>
+            <div class="feature-title">Quality Guaranteed</div>
+            <div class="feature-desc">ISO 9001 certified processes and rigorous QC at every stage ensure every product meets industry standards.</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section" id="contact">
-  <div class="cta-card">
-    <h2>Experience Pure Living Today</h2>
-    <p>Book a free home demo and our expert will visit at your convenience — no pressure, just pure clarity.</p>
-    <div class="cta-form">
-      <input type="tel" placeholder="📞  Enter your mobile number">
-      <button>Book Free Demo</button>
+<!-- ── PROCESS ── -->
+<section class="process" id="process">
+  <div class="process-header reveal">
+    <div class="section-tag">How It Works</div>
+    <h2 class="section-title">From <em>Inquiry</em> to Delivery</h2>
+    <p>A streamlined, transparent ordering process designed to save your team time and effort at every step.</p>
+  </div>
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Send Inquiry</div>
+      <div class="step-desc">Share your requirements via our quote form, email, or call. Our team responds within 2 business hours.</div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">02</div>
+      <div class="step-title">Get Custom Quote</div>
+      <div class="step-desc">We prepare a tailored quotation with competitive pricing based on your volume and product mix.</div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">03</div>
+      <div class="step-title">Confirm &amp; Process</div>
+      <div class="step-desc">Approve the order with easy payment options. We begin picking, packing and quality checks immediately.</div>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">04</div>
+      <div class="step-title">Fast Delivery</div>
+      <div class="step-desc">Your order is dispatched within 24–48 hours with full tracking details shared to your registered contact.</div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ── TESTIMONIALS ── -->
+<section id="testimonials" style="padding: 100px 5vw;">
+  <div class="reveal" style="text-align:center; margin-bottom: .5rem;">
+    <div class="section-tag" style="justify-content:center;">Client Stories</div>
+    <h2 class="section-title">Trusted by <em>Industry</em></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">PackPro has been our go-to supplier for over 5 years. Their packaging quality is consistent, pricing is sharp, and delivery never disappoints.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">RK</div>
+        <div>
+          <div class="testi-name">Rajesh Kumar</div>
+          <div class="testi-role">Procurement Head, LogiCorp India</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">We supply a chain of hotels and PackPro handles all our cleaning chemicals and dispenser needs flawlessly. Single-vendor convenience at its best.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">PM</div>
+        <div>
+          <div class="testi-name">Priya Mehta</div>
+          <div class="testi-role">Operations Manager, StayElite Hotels</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">From stationery to floor scrubbers, we get everything from PackPro. The catalog is vast and the team is genuinely helpful in finding the right products.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">AS</div>
+        <div>
+          <div class="testi-name">Arjun Sharma</div>
+          <div class="testi-role">Admin Director, MediCare Hospital Group</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact" id="contact">
+  <div class="contact-info reveal">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Request a <em>Quote</em></h2>
+    <p>Tell us what you need and we'll respond with a personalised quotation within 2 business hours. Bulk orders and long-term contracts welcome.</p>
+    <div class="contact-details">
+      <div class="contact-row">
+        <div class="contact-row-icon">📍</div>
+        <div>
+          <div class="contact-row-title">Head Office</div>
+          <div class="contact-row-val">Plot No. 42, Industrial Estate, Phase II<br/>Chennai – 600058, Tamil Nadu, India</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-row-icon">📞</div>
+        <div>
+          <div class="contact-row-title">Phone / WhatsApp</div>
+          <div class="contact-row-val">+91 98400 00000<br/>Mon – Sat, 9 AM – 7 PM</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-row-icon">✉️</div>
+        <div>
+          <div class="contact-row-title">Email</div>
+          <div class="contact-row-val">sales@packproindustries.in<br/>support@packproindustries.in</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form reveal">
+    <div class="form-title">Send an Enquiry</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Your full name" />
+      </div>
+      <div class="form-group">
+        <label>Company</label>
+        <input type="text" placeholder="Company / Organization" />
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" placeholder="+91 XXXXX XXXXX" />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com" />
+      </div>
+      <div class="form-group full">
+        <label>Product Category</label>
+        <select>
+          <option value="">Select a category...</option>
+          <option>Packaging Materials</option>
+          <option>Cleaning Chemicals</option>
+          <option>Dispensers</option>
+          <option>Paper Products</option>
+          <option>Cleaning Equipment</option>
+          <option>Stationery Items</option>
+          <option>Multiple Categories</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label>Message / Requirements</label>
+        <textarea placeholder="Describe your product requirements, quantities, or any specific needs..."></textarea>
+      </div>
+      <button class="form-submit">
+        Send Enquiry ✉️
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
 <footer>
-  <div class="footer-logo">Aqua<span>guard</span></div>
-  <p>India's #1 Water Purifier Brand. Pure Living. Pure Life.</p>
-  <div class="footer-links">
-    <a href="#">Water Purifiers</a>
-    <a href="#">Vacuum Cleaners</a>
-    <a href="#">Air Purifiers</a>
-    <a href="#">Water Softeners</a>
-    <a href="#">Service Request</a>
-    <a href="#">Find Dealer</a>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="font-size:1.3rem;">
+        <div class="logo-icon">P</div>
+        Pack<span>Pro</span>
+      </a>
+      <p>Your trusted partner for packaging, cleaning, hygiene, and facility supplies since 2005. Quality products, fair pricing, rapid delivery.</p>
+      <div class="social-row">
+        <div class="social-btn">in</div>
+        <div class="social-btn">fb</div>
+        <div class="social-btn">tw</div>
+        <div class="social-btn">wa</div>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Products</div>
+      <ul class="footer-links">
+        <li><a href="#">Packaging Materials</a></li>
+        <li><a href="#">Cleaning Chemicals</a></li>
+        <li><a href="#">Dispensers</a></li>
+        <li><a href="#">Paper Products</a></li>
+        <li><a href="#">Cleaning Equipment</a></li>
+        <li><a href="#">Stationery Items</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Manufacturing</a></li>
+        <li><a href="#">Quality Certifications</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Support</div>
+      <ul class="footer-links">
+        <li><a href="#">Request Quote</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Product Catalog</a></li>
+        <li><a href="#">Bulk Orders</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
   </div>
   <div class="footer-bottom">
-    © 2025 Aquaguard — Eureka Forbes Ltd. All rights reserved.
+    <p>© 2025 <span>PackPro Industries</span>. All rights reserved.</p>
+    <p>Designed with ❤️ in <span>Chennai, India</span></p>
   </div>
 </footer>
 
+<!-- ── SCROLL REVEAL SCRIPT ── -->
 <script>
-  // Scroll-reveal for product cards
+  const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        entry.target.style.animationDelay = `${(i % 3) * 0.12}s`;
-        entry.target.style.animation = 'fadeUp 0.7s ease both';
+        // stagger siblings in same parent
+        const siblings = [...entry.target.parentElement.querySelectorAll('.reveal:not(.visible)')];
+        const idx = siblings.indexOf(entry.target);
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, idx * 80);
         observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.12 });
 
-  document.querySelectorAll('.product-card, .pillar, .stat-card').forEach(el => {
-    el.style.opacity = '0';
-    observer.observe(el);
+  reveals.forEach(el => observer.observe(el));
+
+  // Sticky nav active state
+  const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+  const sections = document.querySelectorAll('section[id]');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--white)' : '';
+    });
+  });
+
+  // Form submit
+  document.querySelector('.form-submit').addEventListener('click', () => {
+    const btn = document.querySelector('.form-submit');
+    btn.textContent = '✅ Enquiry Sent!';
+    btn.style.background = '#1a7a4a';
+    setTimeout(() => {
+      btn.textContent = 'Send Enquiry ✉️';
+      btn.style.background = '';
+    }, 3000);
   });
 </script>
 
